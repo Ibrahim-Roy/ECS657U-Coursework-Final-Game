@@ -8,6 +8,35 @@ public class Player : MonoBehaviour
     public Slider healthBar;
     public Slider hungerBar;
 
+    public Text woodText;
+    public Text stoneText;
+    public Text rawFishText;
+    public Text rawMeatText;
+
+    public void collectResource(string resourceTag)
+    {
+        if(resourceTag == "Log")
+        {
+            incrementWood();
+            setText(woodText, wood);
+        }
+        else if(resourceTag == "Stone")
+        {
+            incrementStone();
+            setText(stoneText, stone);
+        }
+        else if(resourceTag == "Raw Fish")
+        {
+            incrementRawFish();
+            setText(rawFishText, rawFish);
+        }
+        else if(resourceTag == "Raw Meat")
+        {
+            incrementRawMeat();
+            setText(rawMeatText, rawMeat);
+        }
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
     private float movementSpeed = 2.0f;
@@ -18,6 +47,10 @@ public class Player : MonoBehaviour
     private int health;
     private int maxHunger = 10;
     private int hunger;
+    private int wood = 0;
+    private int stone = 0;
+    private int rawFish = 0;
+    private int rawMeat = 0;
 
     private void Awake()
     {
@@ -129,4 +162,53 @@ public class Player : MonoBehaviour
         hungerBar.fillRect.GetComponentInChildren<Image>().color = new Color(254,184,0,255);
     }
 
+    private void incrementWood()
+    {
+        wood++;
+    }
+
+    private void incrementStone()
+    {
+        stone++;
+    }
+
+    private void incrementRawFish()
+    {
+        rawFish++;
+    }
+
+    private void incrementRawMeat()
+    {
+        rawMeat++;
+    }
+
+    private void decrementWood()
+    {
+        wood--;
+    }
+
+    private void decrementStone()
+    {
+        stone--;
+    }
+
+    private void decrementRawFish()
+    {
+        rawFish--;
+    }
+
+    private void decrementRawMeat()
+    {
+        rawMeat--;
+    }
+
+    private void setText(Text textbox, string text)
+    {
+        textbox.text = text;
+    }
+
+    private void setText(Text textbox, int text)
+    {
+        textbox.text = text.ToString();
+    }
 }
