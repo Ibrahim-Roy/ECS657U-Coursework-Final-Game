@@ -8,6 +8,8 @@ TagManager:
   - Log
   - hook
   - Raw Fish
+  - Spawner Right
+  - Spawner Left
   layers:
   - Default
   - TransparentFX

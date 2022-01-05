@@ -24,7 +24,7 @@ public class LeftFish : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "hook")
+        if (col.gameObject.tag == "hook")//hooked fish
         {
             Debug.Log("Trigger");
             stopMove();
@@ -35,6 +35,11 @@ public class LeftFish : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);//Add sound here
+        }
+
+        if (col.gameObject.tag == "Spawner Right")//Despawn once offscreen
+        {
+            Destroy(gameObject);
         }
     }
 }
