@@ -6,10 +6,16 @@ TagManager:
   tags:
   - Tree
   - Log
+<<<<<<< Updated upstream
   - hook
   - Raw Fish
   - Spawner Right
   - Spawner Left
+=======
+  - Boulder
+  - Stone
+  - Craft Arrow
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

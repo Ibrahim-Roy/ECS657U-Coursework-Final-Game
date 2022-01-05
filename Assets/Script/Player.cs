@@ -37,6 +37,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public int craftArrow()
+    {
+        if(wood > 0 && stone > 0)
+        {
+            decrementWood();
+            decrementStone();
+            setText(stoneText, stone);
+            setText(woodText, wood);
+            incrementArrows();
+        }
+        return arrows;
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
     private float movementSpeed = 2.0f;
@@ -51,6 +64,7 @@ public class Player : MonoBehaviour
     private int stone = 0;
     private int rawFish = 0;
     private int rawMeat = 0;
+    private int arrows = 0;
 
     private void Awake()
     {
@@ -109,6 +123,14 @@ public class Player : MonoBehaviour
         {
             changeEquippedItem(2);
         }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            changeEquippedItem(3);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            changeEquippedItem(4);
+        }
     }
 
     private void movementHandler()
@@ -118,11 +140,19 @@ public class Player : MonoBehaviour
 
     private void useItem()
     {
-        animator.SetTrigger("Use");
         if(equippedItemNumber == 1)
         {
-             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
+            if(arrows > 0)
+            {
+                animator.SetTrigger("Use");
+                decrementArrows();
+                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
+            }
+        }
+        else
+        {
+            animator.SetTrigger("Use");
         }
     }
 
@@ -182,6 +212,11 @@ public class Player : MonoBehaviour
         rawMeat++;
     }
 
+    private void incrementArrows()
+    {
+        arrows++;
+    }
+
     private void decrementWood()
     {
         wood--;
@@ -200,6 +235,11 @@ public class Player : MonoBehaviour
     private void decrementRawMeat()
     {
         rawMeat--;
+    }
+
+    private void decrementArrows()
+    {
+        arrows--;
     }
 
     private void setText(Text textbox, string text)

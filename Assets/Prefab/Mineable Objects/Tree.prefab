@@ -135,5 +135,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   resourcePrefab: {fileID: 4622489846369018107, guid: 9ac43478d6a1a5e4d80369c27dd33ab6, type: 3}
-  lifeCycleTime: 5
+  lifeCycleTime: 60
   animator: {fileID: 665622507379637865}
