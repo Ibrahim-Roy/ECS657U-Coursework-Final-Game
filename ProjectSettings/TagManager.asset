@@ -10,6 +10,7 @@ TagManager:
   - Raw Fish
   - Spawner Right
   - Spawner Left
+  - Bad Fish
   layers:
   - Default
   - TransparentFX
