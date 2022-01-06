@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+    public ParticleSystem dust;
+
     public void collectResource(string resourceTag)
     {
         if(resourceTag == "Log")
@@ -96,6 +98,14 @@ public class Player : MonoBehaviour
         animator.SetFloat("Horizontal", mouseDirection.x);
         animator.SetFloat("Vertical", mouseDirection.y);
         animator.SetFloat("Speed", rigidBody.velocity.magnitude);
+        if(rigidBody.velocity.magnitude > 0 && dust.isPlaying == false)
+        {
+            dust.Play();
+        }
+        else if(rigidBody.velocity.magnitude == 0 && dust.isPlaying == true)
+        {
+            dust.Stop();
+        }
     }
 
     private void inputHandler()
