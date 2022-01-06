@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
-    Rigidbody2D hook_Rigidbody;
-    Collider2D hook_Collider;
+    private Rigidbody2D hook_Rigidbody;
+    private Collider2D hook_Collider;
 
     public Transform startPos;
 
@@ -16,7 +16,6 @@ public class Hook : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(gameObject.GetComponents(typeof(Component)));
         //Fetch the Rigidbody from the GameObject with this script attached
         hook_Rigidbody = GetComponent<Rigidbody2D>();
         hook_Collider = GetComponent<BoxCollider2D>();
