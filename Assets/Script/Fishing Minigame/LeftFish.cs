@@ -26,7 +26,6 @@ public class LeftFish : MonoBehaviour
     {
         if (col.gameObject.tag == "hook")//hooked fish
         {
-            Debug.Log("Trigger");
             stopMove();
             this.transform.parent = col.transform;      
             leftFish_Rigidbody.velocity = new Vector2(0, 4);
