@@ -10,6 +10,8 @@ public class platformPlayerMovement : MonoBehaviour
     public bool checkJump;
     private float Move;
     private Rigidbody2D rb;
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,8 @@ public class platformPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        
         Move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(speed * Move, rb.velocity.y);
         if(Input.GetButtonDown("Jump") && checkJump == false){
