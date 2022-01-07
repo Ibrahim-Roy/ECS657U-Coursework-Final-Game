@@ -41,4 +41,5 @@ public class platformPlayerMovement : MonoBehaviour
             checkJump = true;
         }
     }
+
 }

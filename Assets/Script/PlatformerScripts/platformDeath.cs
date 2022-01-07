@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class platformDeath : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class platformDeath : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.CompareTag("Player")){
-            Player.transform.position = startPoint.transform.position;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
