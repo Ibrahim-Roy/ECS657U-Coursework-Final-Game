@@ -18,8 +18,6 @@ public class Spawner : MonoBehaviour
     private float bottomX;
     private float bottomY;
 
-    private int damage;
-    private int foodValue;
     void Start()
     {
         topX = transform.position.x - (transform.localScale.x/2);//Top left X
@@ -35,44 +33,30 @@ public class Spawner : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(time);
-            damage = 0;
-            foodValue = 0;
 
+            //Spawn chances and locations of food fish
             if (randomBoolean(0.4f)){//Normal fish
                 Transform tempFish = Instantiate(goodFish, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(1f, 3f);
-                foodValue = 1;
             }
             if (randomBoolean(0.2f)){//Nemo fish
                 Transform tempFish = Instantiate(nemo, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(1f, 2f);
-                foodValue = 2;
             }
             if (randomBoolean(0.1f)){//Colourful fish
                 Transform tempFish = Instantiate(colourful, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(1f, 2f);
-                foodValue = 3;
             }
             if (randomBoolean(0.01f)){//Golden fish
                 Transform tempFish = Instantiate(golden, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(0.8f, 1f);
-                foodValue = 10;
             }
 
+            //Spawn chances and locations of damage fish
             if (randomBoolean(0.33f)){//Bad fish
                 Transform tempFish = Instantiate(badFish, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(1f, 2f);
-                damage = 1;
             }
             if (randomBoolean(0.13f)){//Sword fish
                 Transform tempFish = Instantiate(sword, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(2f, 4f);
-                damage = 3;
             }
             if (randomBoolean(0.04f)){//mine fish
                 Transform tempFish = Instantiate(mine, RandomVec2D(topX, topY, bottomX, bottomY), Quaternion.identity);
-                tempFish.transform.localScale = RandomScale2D(7f, 8f);
-                damage = 10;
             }
         }
     }
@@ -81,13 +65,6 @@ public class Spawner : MonoBehaviour
     {
         Vector2 vector2D = new Vector2(Random.Range(topX, bottomX), Random.Range(topY, bottomY));
         return vector2D;
-    }
-
-    private Vector2 RandomScale2D(float min, float max)//Values for scale
-    {
-        float scale = Random.Range(min, max);
-        Vector2 scaler2D = new Vector2(-scale, scale);
-        return scaler2D;
     }
 
     private bool randomBoolean(float x) //The larger the value the more likely 0.5f is 50%

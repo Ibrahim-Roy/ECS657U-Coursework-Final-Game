@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3873751968832178572, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_TagString
+      value: Bad Fish
+      objectReference: {fileID: 0}
     - target: {fileID: 3873751968832178574, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
       propertyPath: m_RootOrder
       value: 0

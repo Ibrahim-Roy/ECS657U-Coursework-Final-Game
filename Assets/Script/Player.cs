@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     private GameObject HUD;
+    private Scene currentScene;
+
     private float movementSpeed = 2.0f;
     private float horizontalInput;
     private float verticalInput;
@@ -72,8 +75,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        currentScene = SceneManager.GetActiveScene();//Set currentScene
+        if (currentScene.name == "Main World")//Do not apply this outside of main world
+        {
+            animator = GetComponent<Animator>();
+            rigidBody = GetComponent<Rigidbody2D>();
+        }
         HUD = GameObject.FindGameObjectWithTag("HUD");
         setMaxHealth(10);
         setMaxHunger(10);
@@ -88,13 +95,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        inputHandler();
-        animationHandler();
+        if (currentScene.name == "Main World")//Do not apply outside of main world
+        {
+            inputHandler();
+            animationHandler();
+        }
     }
 
     private void FixedUpdate()
     {
-        movementHandler();
+        if (currentScene.name == "Main World")//Do not apply outside of main world
+        {
+            movementHandler();
+        }
     }
 
     private void animationHandler()
@@ -251,7 +264,7 @@ public class Player : MonoBehaviour
     private void decrementHealth(int amount)
     {
         health -= amount;
-        if(!blood.isPlaying)
+        if(!blood.isPlaying && currentScene.name == "Main World")
         {
             blood.Play();
         }

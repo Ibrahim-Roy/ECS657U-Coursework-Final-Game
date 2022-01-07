@@ -59,7 +59,7 @@ public class Hook : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         hook_Rigidbody.velocity = new Vector2(0, 4);
-        if (col.gameObject.tag != "Player")
+        if (col.gameObject.tag != "Sky")
         {
             hook_Collider.enabled = false;
         }
