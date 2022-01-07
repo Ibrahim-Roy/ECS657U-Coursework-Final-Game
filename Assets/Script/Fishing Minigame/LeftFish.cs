@@ -9,7 +9,7 @@ public class LeftFish : MonoBehaviour
     void Start()
     {
         leftFish_Rigidbody = GetComponent<Rigidbody2D>();
-        move(Random.Range(3f, 7f));
+        move(Random.Range(3f, 6f));
     }
 
     void move(float u)

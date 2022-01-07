@@ -753,7 +753,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goodFish: {fileID: 3873751968832178574, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+  nemo: {fileID: 2129728866766657169, guid: 93a6b24b7bf265140b3e3fb602edc5be, type: 3}
+  colourful: {fileID: 369902349874324935, guid: 5bd4dcb6605615d46bec11aa10e2fa58, type: 3}
+  golden: {fileID: 3320804554601001884, guid: cbe37e7f19f9330449983ada06c2fcac, type: 3}
   badFish: {fileID: 5440285546144521201, guid: 756a8b9b29457af4eb39618561785823, type: 3}
+  sword: {fileID: 7611705809962211495, guid: 6a80401cfa53c9648918ae92013a48ed, type: 3}
+  mine: {fileID: 699225009096602969, guid: 48a4c381e6f570348a1e26fdd8842115, type: 3}
 --- !u!1 &663060214
 GameObject:
   m_ObjectHideFlags: 0
