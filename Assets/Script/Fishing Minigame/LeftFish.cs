@@ -9,10 +9,10 @@ public class LeftFish : MonoBehaviour
     void Start()
     {
         leftFish_Rigidbody = GetComponent<Rigidbody2D>();
-        move(5);
+        move(Random.Range(3f, 6f));
     }
 
-    void move(int u)
+    void move(float u)
     {
         leftFish_Rigidbody.velocity = new Vector2(u, 0);
     }
@@ -26,7 +26,6 @@ public class LeftFish : MonoBehaviour
     {
         if (col.gameObject.tag == "hook")//hooked fish
         {
-            Debug.Log("Trigger");
             stopMove();
             this.transform.parent = col.transform;      
             leftFish_Rigidbody.velocity = new Vector2(0, 4);
