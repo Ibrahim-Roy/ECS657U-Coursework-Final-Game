@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3892745743445372392}
   - component: {fileID: 6791612564139605678}
   - component: {fileID: 6484719448344443329}
+  - component: {fileID: 7435512865439761134}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -122,3 +123,15 @@ CircleCollider2D:
   m_Offset: {x: -0.42663077, y: 0.007812505}
   serializedVersion: 2
   m_Radius: 0.026494374
+--- !u!114 &7435512865439761134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508807879572693025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676335520e328584fb3a2c28951c102d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

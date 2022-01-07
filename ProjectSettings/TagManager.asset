@@ -12,6 +12,7 @@ TagManager:
   - hook
   - Craft Arrow
   - HUD
+  - Hostile
   layers:
   - Default
   - TransparentFX

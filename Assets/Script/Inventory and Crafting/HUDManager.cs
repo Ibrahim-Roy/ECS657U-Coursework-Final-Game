@@ -18,12 +18,14 @@ public class HUDManager : MonoBehaviour
 
     public void setMaxHealthBarValue(int maxHealth)
     {
+        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;
         healthBar.maxValue = maxHealth;
         setHealth(maxHealth);
     }
 
     public void setMaxHungerBarValue(int maxHunger)
     {
+        hungerBar.fillRect.GetComponentInChildren<Image>().color = new Color(254,184,0,255);
         hungerBar.maxValue = maxHunger;
         setHunger(maxHunger);
     }
@@ -96,12 +98,10 @@ public class HUDManager : MonoBehaviour
     private void setHealth(int health)
     {
         healthBar.value = health;
-        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;
     }
 
     private void setHunger(int hunger)
     {
         hungerBar.value = hunger;
-        hungerBar.fillRect.GetComponentInChildren<Image>().color = new Color(254,184,0,255);
     }
 }

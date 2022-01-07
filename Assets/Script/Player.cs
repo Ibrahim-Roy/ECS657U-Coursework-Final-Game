@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private int equippedItemNumber = 0;
+    private bool shooting = false;
     private int maxHealth;
     private int health;
     private int maxHunger;
@@ -115,23 +116,23 @@ public class Player : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             useItem();
         }
-        if(Input.GetKeyDown(KeyCode.Tab))
+        else if(Input.GetKeyDown(KeyCode.Tab))
         {
             changeEquippedItem(0);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             changeEquippedItem(1);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             changeEquippedItem(2);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             changeEquippedItem(3);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
         {
             changeEquippedItem(4);
         }
@@ -146,12 +147,11 @@ public class Player : MonoBehaviour
     {
         if(equippedItemNumber == 1)
         {
-            if(arrows > 0)
+            if(arrows > 0 && !shooting)
             {
+                shooting = true;
                 animator.SetTrigger("Use");
-                decrementArrows(1);
-                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
+                Invoke("useBow", 0.12f);
             }
         }
         else
@@ -196,13 +196,19 @@ public class Player : MonoBehaviour
 
     private void incrementHealth(int amount)
     {
-        health += amount;
+        if(health < maxHealth)
+        {
+            health += amount;
+        }
         HUD.GetComponent<HUDManager>().updateHUD("Health", health);
     }
 
     private void incrementHunger(int amount)
     {
-        hunger += amount;
+        if(hunger < maxHunger)
+        {
+            hunger += amount;
+        }
         HUD.GetComponent<HUDManager>().updateHUD("Hunger", hunger);
     }
 
@@ -281,5 +287,13 @@ public class Player : MonoBehaviour
     private void displayAlertOnHUD(string text)
     {
         HUD.GetComponent<HUDManager>().alert(text);
+    }
+
+    private void useBow()
+    {
+        decrementArrows(1);
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
+        shooting = false;
     }
 }

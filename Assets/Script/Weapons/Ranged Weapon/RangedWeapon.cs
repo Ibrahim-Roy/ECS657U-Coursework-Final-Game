@@ -19,6 +19,5 @@ public class RangedWeapon : MonoBehaviour
         Vector3 shootingDirection = (aimPosition - transform.position).normalized;
         arrow.GetComponent<Rigidbody2D>().velocity = shootingDirection * shootingSpeed;
         arrow.transform.Rotate(0f, 0f, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
-        Destroy(arrow, 2.0f);
-    }   
+    }
 }
