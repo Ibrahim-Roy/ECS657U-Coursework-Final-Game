@@ -318,8 +318,8 @@ GameObject:
   - component: {fileID: 675069839687767948}
   - component: {fileID: 675069839687767951}
   - component: {fileID: 675069839687767950}
-  - component: {fileID: 675069839687767949}
   - component: {fileID: 675069839687767946}
+  - component: {fileID: 854471773}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -415,24 +415,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &675069839687767949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675069839687767985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a3407bc0c8f1d44f9a4b40dc8438ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumRoamingDistance: 5
-  movementSpeed: 1.5
-  healthBar: {fileID: 675069840165417774}
-  maxHealth: 5
-  blood: {fileID: 1152166272164195529}
-  detectionDistance: 5
 --- !u!50 &675069839687767946
 Rigidbody2D:
   serializedVersion: 4
@@ -454,6 +436,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &854471773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675069839687767985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef08575a4541a4a459e83f343de1b5f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 675069840165417774}
+  blood: {fileID: 1152166272164195529}
+  maximumRoamingDistance: 5
+  detectionDistance: 5
+  movementSpeed: 2
+  stoppingDistance: 3
+  maxHealth: 10
 --- !u!1 &675069840165417808
 GameObject:
   m_ObjectHideFlags: 0

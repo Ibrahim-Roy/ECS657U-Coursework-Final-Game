@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     public ParticleSystem dust;
+    public ParticleSystem blood;
 
     public void collectResource(string resourceTag)
     {
@@ -44,6 +45,11 @@ public class Player : MonoBehaviour
         {
             displayAlertOnHUD("Insufficient resources to craft an arrow");
         }
+    }
+
+    public void takeDamage(int amount)
+    {
+        decrementHealth(amount);
     }
 
     private Rigidbody2D rigidBody;
@@ -245,6 +251,10 @@ public class Player : MonoBehaviour
     private void decrementHealth(int amount)
     {
         health -= amount;
+        if(!blood.isPlaying)
+        {
+            blood.Play();
+        }
         HUD.GetComponent<HUDManager>().updateHUD("Health", health);
     }
 
