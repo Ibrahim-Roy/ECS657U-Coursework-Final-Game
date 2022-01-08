@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3873751968832178563, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_Size.x
+      value: 5.131565
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873751968832178563, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9407632
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873751968832178563, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.028968811
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873751968832178563, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.22282287
+      objectReference: {fileID: 0}
     - target: {fileID: 3873751968832178572, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
       propertyPath: m_Name
       value: Swordfish
@@ -60,16 +76,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3873751968832178575, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a6441595e7558e419b9b7c2c32c1536, type: 3}
+    - target: {fileID: 3873751968832178575, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
       propertyPath: m_Color.b
-      value: 0.67087793
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3873751968832178575, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
       propertyPath: m_Color.g
-      value: 0.7830189
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3873751968832178575, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1d877cfa5498b44d87a9eb1e4d26815, type: 3}
