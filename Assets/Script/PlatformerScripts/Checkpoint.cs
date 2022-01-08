@@ -6,6 +6,9 @@ public class Checkpoint : MonoBehaviour
 {
 
     private GameMaster gm;
+    public GameObject objectToSpawn;
+
+
     void Start(){
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
@@ -13,6 +16,7 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Player")){
             gm.lastCheckPointPos = transform.position;
+            Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
         }
     }
 }
