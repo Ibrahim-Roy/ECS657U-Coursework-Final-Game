@@ -85,7 +85,7 @@ public abstract class HostileNPC : MonoBehaviour
         }
         else
         {
-            if(!backUp)
+            if(!backUp && !attacking)
             {
                 attackTarget();
             }
@@ -108,7 +108,7 @@ public abstract class HostileNPC : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag(target.tag))
         {
-            if(alive)
+            if(alive && !attacking)
             {
                 attackTarget();
             }
