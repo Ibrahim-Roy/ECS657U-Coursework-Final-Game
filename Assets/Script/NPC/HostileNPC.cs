@@ -77,7 +77,7 @@ public abstract class HostileNPC : MonoBehaviour
             Vector2 nextStepPosition = Vector2.MoveTowards(transform.position, targetPosition, (movementSpeed)*Time.deltaTime);
             rigidBody.MovePosition(nextStepPosition);
         }
-        else if(distanceToTarget<stoppingDistance - 1f)
+        else if(distanceToTarget<stoppingDistance - 0.1f)
         {
             Vector2 targetPosition = new Vector2(target.transform.position.x, target.transform.position.y);
             Vector2 nextStepPosition = Vector2.MoveTowards(transform.position, targetPosition, (-movementSpeed)*Time.deltaTime);
@@ -115,6 +115,31 @@ public abstract class HostileNPC : MonoBehaviour
         }
     }
 
+    protected virtual void decrementHealth(int amount)
+    {
+        if(health > 0)
+        {
+            health -= amount;
+            if(!blood.isPlaying)
+            {
+                blood.Play();
+            }
+            if(!healthBar.gameObject.activeSelf)
+            {
+                healthBar.gameObject.SetActive(true);
+            }
+        }
+        if(health <= 0)
+        {
+            health = 0;
+            healthBar.gameObject.SetActive(false);
+            animator.SetTrigger("Kill");
+            alive = false;
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        healthBar.value = health;
+    }
+
     protected abstract void attackTarget();
 
     protected void setRandomRoamDestination()
@@ -141,31 +166,6 @@ public abstract class HostileNPC : MonoBehaviour
         Vector2 walkingDirection = (destination - new Vector2(transform.position.x, transform.position.y)).normalized;
         animator.SetFloat("Horizontal", walkingDirection.x);
         animator.SetFloat("Vertical", walkingDirection.y);
-    }
-
-     protected void decrementHealth(int amount)
-    {
-        if(health > 0)
-        {
-            health -= amount;
-            if(!blood.isPlaying)
-            {
-                blood.Play();
-            }
-            if(!healthBar.gameObject.activeSelf)
-            {
-                healthBar.gameObject.SetActive(true);
-            }
-        }
-        if(health <= 0)
-        {
-            health = 0;
-            healthBar.gameObject.SetActive(false);
-            animator.SetTrigger("Kill");
-            alive = false;
-            rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        healthBar.value = health;
     }
 
     protected IEnumerator waitForObstacleToBeCleared()

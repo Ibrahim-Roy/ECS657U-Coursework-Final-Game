@@ -20,43 +20,41 @@ TagManager:
   - Ground
   - Checkpoint
   - GM
+  - Raw Meat
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - Ignore collisions
   - Water
   - UI
-  -
-  -
-  -
-  -
-  - background
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: background
-    uniqueID: 3042733729
     locked: 0
