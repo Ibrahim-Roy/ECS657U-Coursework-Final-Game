@@ -20,6 +20,7 @@ public class Campfire : MonoBehaviour
     private void Start()
     {
         gameMaster.setPlayerPosition(transform.position);
+        gameMaster.setPlayerDestinationPosition(player.getDestinationPosition());
         gameMaster.setEquippedItem(player.getEquippedItem());
         gameMaster.setHealth(player.getHealth());
         gameMaster.setHunger(player.getHunger());

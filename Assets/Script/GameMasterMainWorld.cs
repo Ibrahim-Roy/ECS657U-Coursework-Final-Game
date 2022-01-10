@@ -17,6 +17,11 @@ public class GameMasterMainWorld : MonoBehaviour
         playerPosition = position;
     }
 
+    public void setPlayerDestinationPosition(Vector2 position)
+    {
+        playerDestinationPosition = position;
+    }
+
     public void setEquippedItem(int itemNumber)
     {
         playerEquippedItemNumber = itemNumber;
@@ -140,6 +145,7 @@ public class GameMasterMainWorld : MonoBehaviour
     private static GameMasterMainWorld instance;
     [SerializeField] private EnumList.PlayMode currentMode;
     [SerializeField] private Vector2 playerPosition;
+    private Vector2 playerDestinationPosition;
     private int playerEquippedItemNumber = 0;
     private int playerHealth = 10;
     private int playerHunger = 10;

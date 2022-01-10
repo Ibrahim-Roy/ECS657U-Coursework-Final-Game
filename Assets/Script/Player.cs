@@ -211,6 +211,11 @@ public class Player : MonoBehaviour
         HUD.updateHUD("Meat", value);
     }
 
+    public void setDestinationPosition(Vector2 newPosition)
+    {
+        destinationPosition = newPosition;
+    }
+
     public int getEquippedItem()
     {
         return equippedItemNumber;
@@ -261,6 +266,11 @@ public class Player : MonoBehaviour
         return meat;
     }
 
+    public Vector2 getDestinationPosition()
+    {
+        return destinationPosition;
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
     private HUDManager HUD;
@@ -283,6 +293,7 @@ public class Player : MonoBehaviour
     private int fish = 0;
     private int meat = 0;
     private bool nearCampfire = false;
+    [SerializeField] private Vector2 destinationPosition;
 
     private void Awake()
     {
@@ -328,6 +339,7 @@ public class Player : MonoBehaviour
         {
             inputHandler();
             animationHandler();
+            HUD.updateCompass(transform.position, destinationPosition);
         }
     }
 

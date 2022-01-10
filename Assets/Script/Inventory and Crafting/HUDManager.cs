@@ -12,6 +12,7 @@ public class HUDManager : MonoBehaviour
     public GameObject bowSlot;
     public GameObject axeSlot;
     public GameObject pickaxeSlot;
+    public GameObject compass;
     public Slider healthBar;
     public Slider hungerBar;
     public Text woodText;
@@ -130,8 +131,19 @@ public class HUDManager : MonoBehaviour
         craftingRecipeDisplay.GetComponentInChildren<Text>().text = recipeText;
     }
 
-    public void hideCraftingRecipe(){
+    public void hideCraftingRecipe()
+    {
         craftingRecipeDisplay.SetActive(false);
+    }
+
+    public void updateCompass(Vector2 startPosition, Vector2 destinationPosition)
+    {
+        Vector2 direction = (destinationPosition - startPosition).normalized;
+        float newRotation = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+        if(compass.transform.rotation.z != newRotation)
+        {
+            compass.transform.rotation = Quaternion.Euler(0, 0, (newRotation));
+        }
     }
 
     private void setText(Text textbox, string text)
