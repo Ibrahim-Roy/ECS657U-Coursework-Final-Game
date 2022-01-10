@@ -857,6 +857,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3299373409246174424, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299373409246174424, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299373409246174424, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6700899843279123478, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
