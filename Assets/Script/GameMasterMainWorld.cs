@@ -5,9 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameMasterMainWorld : MonoBehaviour
 {
-    public Vector2 lastCheckpointPosition;
     public GameObject campfire;
-    public bool reload = false;
+
+    public void setPlayMode(EnumList.PlayMode mode)
+    {
+        currentMode = mode;
+    }
+
+    public void setPlayerPosition(Vector2 position)
+    {
+        playerPosition = position;
+    }
 
     public void setEquippedItem(int itemNumber)
     {
@@ -59,8 +67,79 @@ public class GameMasterMainWorld : MonoBehaviour
         playerMeat = value;
     }
 
+    public void updateCraftFire(bool status)
+    {
+        craftFire = status;
+    }
+
+    public EnumList.PlayMode getPlayMode()
+    {
+        return currentMode;
+    }
+
+    public Vector2 getPlayerPosition()
+    {
+        return playerPosition;
+    }
+
+    public int getEquippedItem()
+    {
+        return playerEquippedItemNumber;
+    }
+
+    public int getHealth()
+    {
+        return playerHealth;
+    }
+
+    public int getHunger()
+    {
+        return playerHunger;
+    }
+
+    public int getWood()
+    {
+        return playerWood;
+    }
+
+    public int getStone()
+    {
+        return playerStone;
+    }
+
+    public int getRawFish()
+    {
+        return playerRawFish;
+    }
+
+    public int getRawMeat()
+    {
+        return playerRawMeat;
+    }
+
+    public int getArrows()
+    {
+        return playerArrows;
+    }
+
+    public int getFish()
+    {
+        return playerFish;
+    }
+
+    public int getMeat()
+    {
+        return playerMeat;
+    }
+
+    public bool craftFireRequired()
+    {
+        return craftFire;
+    }
+
     private static GameMasterMainWorld instance;
-    private Player player;
+    [SerializeField] private EnumList.PlayMode currentMode;
+    [SerializeField] private Vector2 playerPosition;
     private int playerEquippedItemNumber = 0;
     private int playerHealth = 10;
     private int playerHunger = 10;
@@ -71,42 +150,16 @@ public class GameMasterMainWorld : MonoBehaviour
     private int playerArrows = 0;
     private int playerFish = 0;
     private int playerMeat = 0;
+    private bool craftFire = false;
 
     private void Awake() {
         if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(instance);
-            instance.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            instance.player.setEquippedItem(instance.playerEquippedItemNumber);
-            instance.player.setHealth(instance.playerHealth);
-            instance.player.setHunger(instance.playerHunger);
-            instance.player.setWood(instance.playerWood);
-            instance.player.setStone(instance.playerStone);
-            instance.player.setRawFish(instance.playerRawFish);
-            instance.player.setRawMeat(instance.playerRawMeat);
-            instance.player.setArrows(instance.playerArrows);
-            instance.player.setFish(instance.playerFish);
-            instance.player.setMeat(instance.playerMeat);
         }
         else
         {
-            if(instance.reload)
-            {
-                instance.reload = false;
-                Instantiate(campfire, instance.lastCheckpointPosition, Quaternion.identity);
-            }
-            instance.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            instance.player.setEquippedItem(instance.playerEquippedItemNumber);
-            instance.player.setHealth(instance.playerHealth);
-            instance.player.setHunger(instance.playerHunger);
-            instance.player.setWood(instance.playerWood);
-            instance.player.setStone(instance.playerStone);
-            instance.player.setRawFish(instance.playerRawFish);
-            instance.player.setRawMeat(instance.playerRawMeat);
-            instance.player.setArrows(instance.playerArrows);
-            instance.player.setFish(instance.playerFish);
-            instance.player.setMeat(instance.playerMeat);
             Destroy(this.gameObject);
         }
     }

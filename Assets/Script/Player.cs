@@ -258,9 +258,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     private HUDManager HUD;
-    private Scene currentScene;
     private GameMasterMainWorld gameMaster;
-
+    private EnumList.PlayMode currentMode;
     private float movementSpeed = 2.0f;
     private float horizontalInput;
     private float verticalInput;
@@ -282,8 +281,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         gameMaster = GameObject.FindGameObjectWithTag("Game Master").GetComponent<GameMasterMainWorld>();
-        currentScene = SceneManager.GetActiveScene();//Set currentScene
-        if (currentScene.name == "Main World")//Do not apply this outside of main world
+        currentMode = gameMaster.getPlayMode();
+        if (currentMode == EnumList.PlayMode.Main)//Do not apply this outside of main world
         {
             animator = GetComponent<Animator>();
             rigidBody = GetComponent<Rigidbody2D>();
@@ -291,19 +290,35 @@ public class Player : MonoBehaviour
         HUD = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDManager>();
         setMaxHealth(10);
         setMaxHunger(10);
-        health = maxHealth;
-        hunger = maxHunger;
+        if(currentMode == EnumList.PlayMode.Main)
+        {
+            transform.position = gameMaster.getPlayerPosition();
+            setEquippedItem(gameMaster.getEquippedItem());
+        }
+        setHealth(gameMaster.getHealth());
+        setHunger(gameMaster.getHunger());
+        setWood(gameMaster.getWood());
+        setStone(gameMaster.getStone());
+        setRawFish(gameMaster.getRawFish());
+        setRawMeat(gameMaster.getRawMeat());
+        setArrows(gameMaster.getArrows());
+        setFish(gameMaster.getFish());
+        setMeat(gameMaster.getMeat());
+        if(gameMaster.craftFireRequired())
+        {
+            gameMaster.updateCraftFire(false);
+            craftCampfire();
+        }
     }
 
     private void Start()
     {
-        transform.position = gameMaster.lastCheckpointPosition;
         StartCoroutine(decrementHunger(5.0f));
     }
 
     private void Update()
     {
-        if (currentScene.name == "Main World")//Do not apply outside of main world
+        if (currentMode == EnumList.PlayMode.Main)//Do not apply outside of main world
         {
             inputHandler();
             animationHandler();
@@ -312,7 +327,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentScene.name == "Main World")//Do not apply outside of main world
+        if (currentMode == EnumList.PlayMode.Main)//Do not apply outside of main world
         {
             movementHandler();
         }
@@ -492,7 +507,7 @@ public class Player : MonoBehaviour
     private void decrementHealth(int amount)
     {
         health -= amount;
-        if(!blood.isPlaying && currentScene.name == "Main World")
+        if(!blood.isPlaying && currentMode == EnumList.PlayMode.Main)
         {
             blood.Play();
         }
@@ -565,7 +580,7 @@ public class Player : MonoBehaviour
     }
 
     private void die(){
-        gameMaster.reload = true;
+        gameMaster.updateCraftFire(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
