@@ -51,16 +51,19 @@ public class Player : MonoBehaviour
 
     public void craftCampfire()
     {
-        if(wood >=4 && stone >= 2)
+        if(currentMode == EnumList.PlayMode.Main)
         {
-            decrementWood(4);
-            decrementStone(4);
-            Instantiate(campfire, transform.position, Quaternion.identity);
-            displayAlertOnHUD("Campfire crafted successfully");
-        }
-        else
-        {
-            displayAlertOnHUD("Insufficient resources to craft a campfire");
+            if(wood >=4 && stone >= 2)
+            {
+                decrementWood(4);
+                decrementStone(2);
+                Instantiate(campfire, transform.position, Quaternion.identity);
+                displayAlertOnHUD("Campfire crafted successfully");
+            }
+            else
+            {
+                displayAlertOnHUD("Insufficient resources to craft a campfire");
+            }
         }
     }
 
@@ -148,7 +151,10 @@ public class Player : MonoBehaviour
 
     public void setEquippedItem(int itemNumber)
     {
-        changeEquippedItem(itemNumber);
+        if(currentMode == EnumList.PlayMode.Main)
+        {
+            changeEquippedItem(itemNumber);
+        }
     }
 
     public void setHealth(int value)
@@ -405,6 +411,7 @@ public class Player : MonoBehaviour
     private void changeEquippedItem(int itemNumber)
     {
         equippedItemNumber = itemNumber;
+        HUD.updateHUD("Equipped Item", itemNumber);
         animator.SetInteger("Equipped Item Number", equippedItemNumber);
     }
 
