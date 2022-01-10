@@ -8,6 +8,10 @@ public class HUDManager : MonoBehaviour
     public GameObject alertTextContainer;
     public GameObject alertTextBoxPrefab;
     public GameObject craftingRecipeDisplay;
+    public GameObject swordSlot;
+    public GameObject bowSlot;
+    public GameObject axeSlot;
+    public GameObject pickaxeSlot;
     public Slider healthBar;
     public Slider hungerBar;
     public Text woodText;
@@ -69,6 +73,29 @@ public class HUDManager : MonoBehaviour
         else if(HUDComponent == "Meat")
         {
             setText(meatText, value);
+        }
+        else if(HUDComponent == "Equipped Item")
+        {
+            bowSlot.GetComponent<Image>().color = Color.white;
+            swordSlot.GetComponent<Image>().color = Color.white;
+            axeSlot.GetComponent<Image>().color = Color.white;
+            pickaxeSlot.GetComponent<Image>().color = Color.white;
+            if(value == 1)
+            {
+                bowSlot.GetComponent<Image>().color = new Color(0.282f, 0.204f, 0.015f, 0.612f);
+            }
+            else if(value == 2)
+            {
+                swordSlot.GetComponent<Image>().color = new Color(0.282f, 0.204f, 0.015f, 0.612f);
+            }
+            else if(value == 3)
+            {
+                axeSlot.GetComponent<Image>().color = new Color(0.282f, 0.204f, 0.015f, 0.612f);
+            }
+            else if(value == 4)
+            {
+                pickaxeSlot.GetComponent<Image>().color = new Color(0.282f, 0.204f, 0.015f, 0.612f); 
+            }
         }
     }
 

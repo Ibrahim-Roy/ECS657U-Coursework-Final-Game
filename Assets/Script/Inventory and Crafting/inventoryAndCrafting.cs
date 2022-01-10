@@ -34,6 +34,11 @@ public class inventoryAndCrafting : MonoBehaviour
         player.consumeMeat();
     }
 
+    public void requestEquippedItemChanged(int value)
+    {
+        player.setEquippedItem(value);
+    }
+
     private Player player;
 
     private void Awake()
