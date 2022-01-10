@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class optionsScreen : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class optionsScreen : MonoBehaviour
     public Toggle vsyncT;
 
     public List<ResolutionItem> resolutions = new List<ResolutionItem>();
+    private int selectedRes;
+    public TMP_Text resolutionLabel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +33,31 @@ public class optionsScreen : MonoBehaviour
         
     }
 
+    public void ResolutionLeft(){
+        selectedRes--;
+        if(selectedRes < 0){
+            selectedRes = 0;
+        }
+
+        updateResLabel();
+    }
+
+    public void ResolutionRight(){
+        selectedRes++;
+        if(selectedRes > resolutions.Count - 1){
+            selectedRes = resolutions.Count - 1;
+        }
+
+        updateResLabel();
+    }
+
+    public void updateResLabel(){
+        resolutionLabel.text = resolutions[selectedRes].horizontal.ToString() + " x " + resolutions[selectedRes].vertical.ToString();
+    }
+
     public void ApplyGraphics(){
 
-        Screen.fullScreen = fullscreenT.isOn;
+        //Screen.fullScreen = fullscreenT.isOn;
 
         if(vsyncT.isOn){
             QualitySettings.vSyncCount = 1;
@@ -39,6 +65,8 @@ public class optionsScreen : MonoBehaviour
         else{
             QualitySettings.vSyncCount = 0;
         }
+
+        Screen.SetResolution(resolutions[selectedRes].horizontal, resolutions[selectedRes].vertical, fullscreenT.isOn);
 
     }
 }
