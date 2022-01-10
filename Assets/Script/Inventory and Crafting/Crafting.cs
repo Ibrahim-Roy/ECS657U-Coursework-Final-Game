@@ -10,6 +10,18 @@ public class Crafting : MonoBehaviour
         {
             player.GetComponent<Player>().craftArrow();
         }
+        else if(gameObject.tag == "Craft Campfire")
+        {
+            player.GetComponent<Player>().craftCampfire();
+        }
+        else if(gameObject.tag == "Craft Meat")
+        {
+            player.GetComponent<Player>().craftMeat();
+        }
+        else if(gameObject.tag == "Craft Fish")
+        {
+            player.GetComponent<Player>().craftFish();
+        }
     }
 
     private GameObject player;

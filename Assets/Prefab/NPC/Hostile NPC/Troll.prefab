@@ -187,15 +187,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6546799584848767468}
   blood: {fileID: 6546799585816946391}
-  maximumRoamingDistance: 3
-  detectionDistance: 1
+  maximumRoamingDistance: 5
+  detectionDistance: 3
   movementSpeed: 1
-  stoppingDistance: 0
+  stoppingDistance: 0.2
   maxHealth: 10
   lootAble: 0
   lootingGuidePanel: {fileID: 0}
   resource: {fileID: 0}
-  dodgeBackDistance: 0.7
+  dodgeBackDistance: 1.5
 --- !u!95 &6546799584324959414
 Animator:
   serializedVersion: 3

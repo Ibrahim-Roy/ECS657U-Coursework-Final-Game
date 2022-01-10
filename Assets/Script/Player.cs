@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public ParticleSystem dust;
     public ParticleSystem blood;
+    public GameObject campfire;
 
     public void collectResource(string resourceTag)
     {
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
 
     public void craftArrow()
     {
-        if(wood > 0 && stone > 0)
+        if(wood >= 1 && stone >= 1)
         {
             decrementWood(1);
             decrementStone(1);
@@ -48,15 +49,217 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void craftCampfire()
+    {
+        if(wood >=4 && stone >= 4)
+        {
+            decrementWood(4);
+            decrementStone(4);
+            Instantiate(campfire, transform.position, Quaternion.identity);
+            displayAlertOnHUD("Campfire crafted successfully");
+        }
+        else
+        {
+            displayAlertOnHUD("Insufficient resources to craft a campfire");
+        }
+    }
+
+    public void craftMeat()
+    {
+        if(nearCampfire)
+        {
+            if(rawMeat >= 1)
+            {
+                decrementRawMeat(1);
+                incrementMeat(1);
+                displayAlertOnHUD("Meat cooked successfully");
+            }
+            else
+            {
+                displayAlertOnHUD("You need raw meat to be able to cook it");
+            }
+        }
+        else
+        {
+            displayAlertOnHUD("You need to be near a campfire to cook meat");
+        }
+    }
+
+    public void craftFish()
+    {
+        if(nearCampfire)
+        {
+            if(rawFish >= 1)
+            {
+                decrementRawFish(1);
+                incrementFish(1);
+                displayAlertOnHUD("Fish cooked successfully");
+            }
+            else
+            {
+                displayAlertOnHUD("You need raw fish to be able to cook it");
+            }
+        }
+        else
+        {
+            displayAlertOnHUD("You need to be near a campfire to cook fish");
+        }
+    }
+
+    public void consumeFish()
+    {
+        if(fish >= 1)
+        {
+            decrementFish(1);
+            incrementHealth(5);
+            incrementHunger(maxHunger);
+            displayAlertOnHUD("Consumed fish, +5 health and hunger is replenished");
+        }
+        else
+        {
+            displayAlertOnHUD("You have no cooked fish to eat");
+        }
+    }
+
+    public void consumeMeat()
+    {
+        if(meat >= 1)
+        {
+            decrementMeat(1);
+            incrementHealth(5);
+            incrementHunger(maxHunger);
+            displayAlertOnHUD("Consumed meat, +5 health and hunger is replenished");
+        }
+        else
+        {
+            displayAlertOnHUD("You have no cooked meat to eat");
+        }
+    }
+
     public void takeDamage(int amount)
     {
         decrementHealth(amount);
     }
 
+    public void setCampfireStatus(bool status)
+    {
+        nearCampfire = status;
+    }
+
+    public void setEquippedItem(int itemNumber)
+    {
+        changeEquippedItem(itemNumber);
+    }
+
+    public void setHealth(int value)
+    {
+        health = value;
+        HUD.updateHUD("Health", value);
+    }
+
+    public void setHunger(int value)
+    {
+        hunger = value;
+        HUD.updateHUD("Hunger", value);
+    }
+
+    public void setWood(int value)
+    {
+        wood = value;
+        HUD.updateHUD("Wood", value);
+    }
+
+    public void setStone(int value)
+    {
+        stone = value;
+        HUD.updateHUD("Stone", value);
+    }
+
+    public void setRawFish(int value)
+    {
+        rawFish = value;
+        HUD.updateHUD("Raw Fish", value);
+    }
+
+    public void setRawMeat(int value)
+    {
+        rawMeat = value;
+        HUD.updateHUD("Raw Meat", value);
+    }
+
+    public void setArrows(int value)
+    {
+        arrows = value;
+        HUD.updateHUD("Arrows", value);
+    }
+
+    public void setFish(int value)
+    {
+        fish = value;
+        HUD.updateHUD("Fish", value);
+    }
+
+    public void setMeat(int value)
+    {
+        meat = value;
+        HUD.updateHUD("Meat", value);
+    }
+
+    public int getEquippedItem()
+    {
+        return equippedItemNumber;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public int getHunger()
+    {
+        return hunger;
+    }
+
+    public int getWood()
+    {
+        return wood;
+    }
+
+    public int getStone()
+    {
+        return stone;
+    }
+
+    public int getRawFish()
+    {
+        return rawFish;
+    }
+
+    public int getRawMeat()
+    {
+        return rawMeat;
+    }
+
+    public int getArrows()
+    {
+        return arrows;
+    }
+
+    public int getFish()
+    {
+        return fish;
+    }
+
+    public int getMeat()
+    {
+        return meat;
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
-    private GameObject HUD;
+    private HUDManager HUD;
     private Scene currentScene;
+    private GameMasterMainWorld gameMaster;
 
     private float movementSpeed = 2.0f;
     private float horizontalInput;
@@ -72,16 +275,20 @@ public class Player : MonoBehaviour
     private int rawFish = 0;
     private int rawMeat = 0;
     private int arrows = 0;
+    private int fish = 0;
+    private int meat = 0;
+    private bool nearCampfire = false;
 
     private void Awake()
     {
+        gameMaster = GameObject.FindGameObjectWithTag("Game Master").GetComponent<GameMasterMainWorld>();
         currentScene = SceneManager.GetActiveScene();//Set currentScene
         if (currentScene.name == "Main World")//Do not apply this outside of main world
         {
             animator = GetComponent<Animator>();
             rigidBody = GetComponent<Rigidbody2D>();
         }
-        HUD = GameObject.FindGameObjectWithTag("HUD");
+        HUD = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDManager>();
         setMaxHealth(10);
         setMaxHunger(10);
         health = maxHealth;
@@ -90,6 +297,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        transform.position = gameMaster.lastCheckpointPosition;
         StartCoroutine(decrementHunger(5.0f));
     }
 
@@ -204,13 +412,13 @@ public class Player : MonoBehaviour
     private void setMaxHealth(int amount)
     {
         maxHealth = amount;
-        HUD.GetComponent<HUDManager>().setMaxHealthBarValue(maxHealth);
+        HUD.setMaxHealthBarValue(maxHealth);
     }
 
     private void setMaxHunger(int amount)
     {
         maxHunger = amount;
-        HUD.GetComponent<HUDManager>().setMaxHungerBarValue(maxHunger);
+        HUD.setMaxHungerBarValue(maxHunger);
     }
 
     private void incrementHealth(int amount)
@@ -218,8 +426,12 @@ public class Player : MonoBehaviour
         if(health < maxHealth)
         {
             health += amount;
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
-        HUD.GetComponent<HUDManager>().updateHUD("Health", health);
+        HUD.updateHUD("Health", health);
     }
 
     private void incrementHunger(int amount)
@@ -227,38 +439,54 @@ public class Player : MonoBehaviour
         if(hunger < maxHunger)
         {
             hunger += amount;
+            if(hunger > maxHunger)
+            {
+                hunger = maxHunger;
+            }
         }
-        HUD.GetComponent<HUDManager>().updateHUD("Hunger", hunger);
+        HUD.updateHUD("Hunger", hunger);
     }
 
     private void incrementWood(int amount)
     {
         wood += amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Wood", wood);
+        HUD.updateHUD("Wood", wood);
     }
 
     private void incrementStone(int amount)
     {
         stone += amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Stone", stone);
+        HUD.updateHUD("Stone", stone);
     }
 
     private void incrementRawFish(int amount)
     {
         rawFish += amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Raw Fish", rawFish);
+        HUD.updateHUD("Raw Fish", rawFish);
     }
 
     private void incrementRawMeat(int amount)
     {
         rawMeat += amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Raw Meat", rawMeat);
+        HUD.updateHUD("Raw Meat", rawMeat);
     }
 
     private void incrementArrows(int amount)
     {
         arrows += amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Arrows", arrows);
+        HUD.updateHUD("Arrows", arrows);
+    }
+
+    private void incrementMeat(int amount)
+    {
+        meat += amount;
+        HUD.updateHUD("Meat", meat);
+    }
+
+    private void incrementFish(int amount)
+    {
+        fish += amount;
+        HUD.updateHUD("Fish", fish);
     }
 
     private void decrementHealth(int amount)
@@ -268,48 +496,64 @@ public class Player : MonoBehaviour
         {
             blood.Play();
         }
-        HUD.GetComponent<HUDManager>().updateHUD("Health", health);
+        HUD.updateHUD("Health", health);
+        if(health <= 0)
+        {
+            die();
+        }
     }
 
     private void decrementHunger(int amount)
     {
         hunger -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Hunger", hunger);
+        HUD.updateHUD("Hunger", hunger);
     }
 
     private void decrementWood(int amount)
     {
         wood -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Wood", wood);
+        HUD.updateHUD("Wood", wood);
     }
 
     private void decrementStone(int amount)
     {
         stone -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Stone", stone);
+        HUD.updateHUD("Stone", stone);
     }
 
     private void decrementRawFish(int amount)
     {
         rawFish -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Raw Fish", rawFish);
+        HUD.updateHUD("Raw Fish", rawFish);
     }
 
     private void decrementRawMeat(int amount)
     {
         rawMeat -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Raw Meat", rawMeat);
+        HUD.updateHUD("Raw Meat", rawMeat);
     }
 
     private void decrementArrows(int amount)
     {
         arrows -= amount;
-        HUD.GetComponent<HUDManager>().updateHUD("Arrows", arrows);
+        HUD.updateHUD("Arrows", arrows);
+    }
+
+    private void decrementMeat(int amount)
+    {
+        meat -= amount;
+        HUD.updateHUD("Meat", meat);
+    }
+
+    private void decrementFish(int amount)
+    {
+        fish -= amount;
+        HUD.updateHUD("Fish", fish);
     }
 
     private void displayAlertOnHUD(string text)
     {
-        HUD.GetComponent<HUDManager>().alert(text);
+        HUD.alert(text);
     }
 
     private void useBow()
@@ -318,5 +562,10 @@ public class Player : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
         shooting = false;
+    }
+
+    private void die(){
+        gameMaster.reload = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
