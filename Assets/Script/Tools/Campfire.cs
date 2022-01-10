@@ -19,7 +19,7 @@ public class Campfire : MonoBehaviour
 
     private void Start()
     {
-        gameMaster.lastCheckpointPosition = transform.position;
+        gameMaster.setPlayerPosition(transform.position);
         gameMaster.setEquippedItem(player.getEquippedItem());
         gameMaster.setHealth(player.getHealth());
         gameMaster.setHunger(player.getHunger());
