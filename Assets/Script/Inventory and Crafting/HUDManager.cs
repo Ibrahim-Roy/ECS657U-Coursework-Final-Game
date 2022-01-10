@@ -15,6 +15,8 @@ public class HUDManager : MonoBehaviour
     public Text rawFishText;
     public Text rawMeatText;
     public Text arrowsText;
+    public Text meatText;
+    public Text fishText;
 
     public void setMaxHealthBarValue(int maxHealth)
     {
@@ -60,6 +62,14 @@ public class HUDManager : MonoBehaviour
         {
             setText(arrowsText, value);
         }
+        else if(HUDComponent == "Fish")
+        {
+            setText(fishText, value);
+        }
+        else if(HUDComponent == "Meat")
+        {
+            setText(meatText, value);
+        }
     }
 
     public void alert(string alertText)
@@ -67,7 +77,7 @@ public class HUDManager : MonoBehaviour
         var newTextBox = Instantiate(alertTextBoxPrefab, new Vector3(0,0,0), Quaternion.identity);
         newTextBox.transform.SetParent(alertTextContainer.transform, false);
         newTextBox.GetComponentInChildren<Text>().text = alertText;
-        Destroy(newTextBox, 1);
+        Destroy(newTextBox, 1.5f);
     }
 
     public void showCraftingRecipe(string recipeName)
@@ -77,6 +87,18 @@ public class HUDManager : MonoBehaviour
         if(recipeName == "Arrow")
         {
             recipeText += "1x Wood\n1x Stone";
+        }
+        else if(recipeName == "Campfire")
+        {
+            recipeText += "4x Wood\n2x Stone";
+        }
+        else if(recipeName == "Meat")
+        {
+            recipeText += "1x Raw Meat";
+        }
+        else if(recipeName == "Fish")
+        {
+            recipeText += "1x Raw Fish";
         }
         craftingRecipeDisplay.GetComponentInChildren<Text>().text = recipeText;
     }

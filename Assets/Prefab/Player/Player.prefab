@@ -15174,7 +15174,7 @@ GameObject:
   - component: {fileID: 3015573044171635161}
   - component: {fileID: 3015573044171635160}
   - component: {fileID: 3015573044171635163}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -15284,6 +15284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dust: {fileID: 3015573043025252537}
   blood: {fileID: 3015573044095910527}
+  campfire: {fileID: 3901991060034842031, guid: 248b7e355fb72794ab027b457eeb0789, type: 3}
 --- !u!114 &3015573044171635161
 MonoBehaviour:
   m_ObjectHideFlags: 0

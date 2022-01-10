@@ -21,6 +21,10 @@ TagManager:
   - Checkpoint
   - GM
   - Raw Meat
+  - Craft Campfire
+  - Craft Meat
+  - Craft Fish
+  - Game Master
   layers:
   - Default
   - TransparentFX
