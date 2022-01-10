@@ -10,7 +10,7 @@ public class platformFinish : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player")){
             
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("Main World");
         }
 
     }
