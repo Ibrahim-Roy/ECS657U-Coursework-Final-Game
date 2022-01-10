@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Hook : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class Hook : MonoBehaviour
     public int difficulty; //If difficulties are added 
     float difficulty_speed;
 
+    private AudioManager audioController;
 
     void Start()
     {
         //Fetch the Rigidbody from the GameObject with this script attached
         hook_Rigidbody = GetComponent<Rigidbody2D>();
         hook_Collider = GetComponent<BoxCollider2D>();
+        audioController = GetComponent<AudioManager>();
 
         if (difficulty == 1)
             difficulty_speed = 500f;
@@ -31,38 +34,39 @@ public class Hook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        resetHook();
-        if (hook_Rigidbody.velocity.y == 0 && Input.GetMouseButtonDown(0))//Check if stationary and wait for mouse click
+        if (hook_Rigidbody.velocity.y == 0 && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())//Check if stationary and wait for mouse click, not over hud
             descend();
-        if (transform.position.y <= -4.0 && hook_Rigidbody.velocity.y < 4f)//Accelerate up, until max velocity
+        else if (transform.position.y <= -4.0 && hook_Rigidbody.velocity.y < 4f)//Accelerate up
             ascend();
+        if(hook_Rigidbody.velocity.y > 0 && transform.position.y > 4.0)
+            resetHook();
     }
 
     void ascend()//Accelerate upwards
     {
-        hook_Rigidbody.AddForce(transform.up * (difficulty_speed / 12));//Slow then ascend slowly
+        hook_Rigidbody.velocity = new Vector2(0, 4);
+        FindObjectOfType<AudioManager>().Play("reel");
     }
     void descend()//Accelerate downwards
     {
-        hook_Rigidbody.AddForce(-transform.up * difficulty_speed);//Go down at speed based on difficulty
+        hook_Rigidbody.velocity = new Vector2(0, -4);
     }
 
     void resetHook()
     {
-        if(hook_Rigidbody.velocity.y > 0 && transform.position.y > 4.0){
-            hook_Rigidbody.velocity = new Vector2(0, 0);
-            transform.position = startPos.position;
-            hook_Collider.enabled = true;
-        }
+        hook_Rigidbody.velocity = new Vector2(0, 0);
+        transform.position = startPos.position;
+        hook_Collider.enabled = true;
+        FindObjectOfType<AudioManager>().Stop("reel");
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        hook_Rigidbody.velocity = new Vector2(0, 4);
-        if (col.gameObject.tag != "Sky")
+        if (col.gameObject.tag != "Player")
         {
             hook_Collider.enabled = false;
+            hook_Rigidbody.velocity = new Vector2(0f, 3.5f);
+            FindObjectOfType<AudioManager>().Play("reel");
         }
-
     }
 }
