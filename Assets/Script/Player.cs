@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     public void craftCampfire()
     {
-        if(wood >=4 && stone >= 4)
+        if(wood >=4 && stone >= 2)
         {
             decrementWood(4);
             decrementStone(4);
@@ -294,6 +294,11 @@ public class Player : MonoBehaviour
         {
             transform.position = gameMaster.getPlayerPosition();
             setEquippedItem(gameMaster.getEquippedItem());
+            if(gameMaster.craftFireRequired())
+            {
+                Instantiate(campfire, transform.position, Quaternion.identity);
+                gameMaster.updateCraftFire(false);
+            }
         }
         setHealth(gameMaster.getHealth());
         setHunger(gameMaster.getHunger());
@@ -304,11 +309,6 @@ public class Player : MonoBehaviour
         setArrows(gameMaster.getArrows());
         setFish(gameMaster.getFish());
         setMeat(gameMaster.getMeat());
-        if(gameMaster.craftFireRequired())
-        {
-            gameMaster.updateCraftFire(false);
-            craftCampfire();
-        }
     }
 
     private void Start()
@@ -568,7 +568,7 @@ public class Player : MonoBehaviour
 
     private void displayAlertOnHUD(string text)
     {
-        HUD.alert(text);
+        HUD.alert(text);    
     }
 
     private void useBow()
