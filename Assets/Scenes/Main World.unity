@@ -184,7 +184,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776744, y: 1}
+    m_SensorSize: {x: 1.7783985, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -225,6 +225,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &402755622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6517865356964740687, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
+  m_PrefabInstance: {fileID: 2888134290688518566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &481936980 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 481936980, guid: fc00cfa1434b16c43b1914c254791ed4, type: 3}
@@ -498,6 +503,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1042136399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 986041758591371662, guid: 847da9fe7ffd2ce42b2889e2f62f550c, type: 3}
+  m_PrefabInstance: {fileID: 2888134290688518566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1401872157
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 881003950}
+  tutorialBox: {fileID: 1042136399}
   campaignSequenceNumber: 1
 --- !u!1 &1847405142
 GameObject:
@@ -660,6 +677,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 565166633441380058, guid: 08f7ba54b304f7042b37b6728bce1936, type: 2}
     value: {fileID: 481936980}
+  - key: {fileID: -341593956978409959, guid: 08f7ba54b304f7042b37b6728bce1936, type: 2}
+    value: {fileID: 402755622}
   m_ExposedReferences:
     m_References:
     - ca42a14472322194196259499ad45126: {fileID: 2125087357}
@@ -678,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 881003950}
+  tutorialBox: {fileID: 1042136399}
   campaignSequenceNumber: 0
 --- !u!61 &1847405146
 BoxCollider2D:
@@ -10964,7 +10984,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776744, y: 1}
+    m_SensorSize: {x: 1.7783985, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10995,6 +11015,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3015573043221552795, guid: fc00cfa1434b16c43b1914c254791ed4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015573043221552795, guid: fc00cfa1434b16c43b1914c254791ed4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015573043221552795, guid: fc00cfa1434b16c43b1914c254791ed4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3015573044171635141, guid: fc00cfa1434b16c43b1914c254791ed4, type: 3}
       propertyPath: m_Name
       value: Player

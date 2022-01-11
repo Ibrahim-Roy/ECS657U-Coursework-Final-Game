@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Campaign : MonoBehaviour
 {
     public Text dialogBox;
+    public Text tutorialBox;
 
 
     private GameMasterMainWorld gameMaster;
@@ -60,9 +61,10 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f);
         dialogBox.text = "That cave seems like a good place!";
         yield return new WaitForSecondsRealtime(5f);
-        running = false;
+        tutorialBox.text = "- Use WASD or Arrow keys to move\n- The player faces towards the direction of your mouse cursor\n- Follow the compass on the top right of the screen to go to the next objective";
         player.setDestinationPosition(new Vector2(-1.4f, -4.5f));
         gameMaster.incrementProgressCounter();
+        running = false;
         Destroy(gameObject);
     }
 

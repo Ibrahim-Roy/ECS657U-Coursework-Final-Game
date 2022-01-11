@@ -13,6 +13,7 @@ public class HUDManager : MonoBehaviour
     public GameObject axeSlot;
     public GameObject pickaxeSlot;
     public GameObject compass;
+    public GameObject tutorialTextBox;
     public Slider healthBar;
     public Slider hungerBar;
     public Text woodText;
@@ -144,6 +145,11 @@ public class HUDManager : MonoBehaviour
         {
             compass.transform.rotation = Quaternion.Euler(0, 0, (newRotation));
         }
+    }
+
+    public void hideTutorialBox()
+    {
+        tutorialTextBox.SetActive(false);
     }
 
     private void setText(Text textbox, string text)
