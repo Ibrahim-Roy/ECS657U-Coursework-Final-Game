@@ -137,9 +137,19 @@ public class GameMasterMainWorld : MonoBehaviour
         return playerMeat;
     }
 
+    public int getProgressCounter()
+    {
+        return progressCounter;
+    }
+
     public bool craftFireRequired()
     {
         return craftFire;
+    }
+
+    public void incrementProgressCounter()
+    {
+        progressCounter += 1;
     }
 
     private static GameMasterMainWorld instance;
@@ -157,6 +167,7 @@ public class GameMasterMainWorld : MonoBehaviour
     private int playerFish = 0;
     private int playerMeat = 0;
     private bool craftFire = false;
+    private int progressCounter = 0;
 
     private void Awake() {
         if(instance == null)
