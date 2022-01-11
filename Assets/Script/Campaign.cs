@@ -35,6 +35,10 @@ public class Campaign : MonoBehaviour
                         StartCoroutine(cutscene1());
                     }
                 }
+                else if(campaignSequenceNumber == 1)
+                {
+                    Debug.Log("Load the cave scene here");
+                }
             }
         }
     }
@@ -42,6 +46,7 @@ public class Campaign : MonoBehaviour
     private IEnumerator cutscene1()
     {
         running = true;
+        yield return new WaitForSecondsRealtime(2f);
         cutscene.Play();
         dialogBox.text = "Where am I?";
         yield return new WaitForSecondsRealtime(0.5f);
@@ -53,8 +58,11 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I must find someplace to hide!";
         yield return new WaitForSecondsRealtime(3.5f);
+        dialogBox.text = "That cave seems like a good place!";
+        yield return new WaitForSecondsRealtime(5f);
         running = false;
         player.setDestinationPosition(new Vector2(-1.4f, -4.5f));
+        gameMaster.incrementProgressCounter();
         Destroy(gameObject);
     }
 

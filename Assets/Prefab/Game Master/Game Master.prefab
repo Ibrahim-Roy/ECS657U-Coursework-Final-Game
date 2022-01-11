@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   campfire: {fileID: 3901991060034842031, guid: 248b7e355fb72794ab027b457eeb0789, type: 3}
   currentMode: 0
-  playerPosition: {x: 0, y: -4}
+  playerPosition: {x: -5, y: -13}
