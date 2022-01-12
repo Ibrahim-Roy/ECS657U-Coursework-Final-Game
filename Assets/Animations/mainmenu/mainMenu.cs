@@ -7,6 +7,8 @@ public class mainMenu : MonoBehaviour
 {
     public GameObject options;
 
+    public GameObject instructions;
+
     public void Play(){
         SceneManager.LoadScene("Main World");
     }
@@ -17,6 +19,14 @@ public class mainMenu : MonoBehaviour
 
     public void OptionClose(){
         options.SetActive(false);
+    }
+
+    public void HowOpen(){
+        instructions.SetActive(true);
+    }
+
+    public void HowClose(){
+        instructions.SetActive(false);
     }
 
     public void Quit(){

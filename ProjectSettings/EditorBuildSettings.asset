@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: bac3f7409e75f614d9129ebba6857b31
+  - enabled: 1
+    path: Assets/Scenes/Main World.unity
+    guid: ab9e71c39b711ab4abbc3c10428a882f
+  - enabled: 1
+    path: Assets/Scenes/FishingMinigame.unity
+    guid: 4bdfc4f499fa44a458e36ba3944daeb3
+  - enabled: 1
+    path: Assets/Scenes/pyramid.unity
+    guid: ff54f6f0a121cdc4b8d36386d43ec58d
   m_configObjects: {}
