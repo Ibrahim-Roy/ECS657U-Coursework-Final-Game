@@ -23,12 +23,12 @@ public class Hook : MonoBehaviour
         hook_Collider = GetComponent<BoxCollider2D>();
         audioController = GetComponent<AudioManager>();
 
-        if (difficulty == 1)
-            difficulty_speed = 500f;
-        else if (difficulty == 2)
-            difficulty_speed = 300f;      
-        else if (difficulty == 3)
-            difficulty_speed = 200f;
+        // if (difficulty == 1)
+        //     difficulty_speed = 500f;
+        // else if (difficulty == 2)
+        //     difficulty_speed = 300f;      
+        // else if (difficulty == 3)
+        //     difficulty_speed = 200f;
     }
 
     // Update is called once per frame
@@ -50,9 +50,10 @@ public class Hook : MonoBehaviour
     void descend()//Accelerate downwards
     {
         hook_Rigidbody.velocity = new Vector2(0, -4);
+        FindObjectOfType<AudioManager>().Play("splash");
     }
 
-    void resetHook()
+    void resetHook()//Sets the hook to starting position
     {
         hook_Rigidbody.velocity = new Vector2(0, 0);
         transform.position = startPos.position;
@@ -60,7 +61,7 @@ public class Hook : MonoBehaviour
         FindObjectOfType<AudioManager>().Stop("reel");
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)//When catches fish
     {
         if (col.gameObject.tag != "Player")
         {

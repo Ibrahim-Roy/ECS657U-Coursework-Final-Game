@@ -35,7 +35,6 @@ public class LeftFish : MonoBehaviour
         if (col.gameObject.tag == "hook")//hooked fish
         {
             stopMove();
-            Debug.Log("hooked");
             FindObjectOfType<AudioManager>().Play("hooked");
             this.transform.parent = col.transform;      
             leftFish_Rigidbody.velocity = new Vector2(0f, 3.5f);
@@ -46,8 +45,8 @@ public class LeftFish : MonoBehaviour
             if (gameObject.tag == "Raw Fish")
             {
                 for (int i = 0; i < foodValue; i++)
+                    player.GetComponent<Player>().collectResource("Raw Fish");
                 FindObjectOfType<AudioManager>().Play(audioClip);
-                player.GetComponent<Player>().collectResource("Raw Fish");
             }
 
             else if (gameObject.tag == "Bad Fish")
@@ -95,28 +94,28 @@ public class LeftFish : MonoBehaviour
     //Size, speed and food values of food fish
     private void defineNormalFish()//Average fish
     {
-        transform.localScale = RandomScale2D(0.2f, 0.5f);
+        transform.localScale = RandomScale2D(0.15f, 0.4f);
         move(Random.Range(2f, 4f));
         foodValue = 1;
         audioClip = "normal";
     }
     private void defineNemo()//Small fish
     {
-        transform.localScale = RandomScale2D(0.1f, 0.28f);
+        transform.localScale = RandomScale2D(0.15f, 0.28f);
         move(Random.Range(2f, 4f));
         foodValue = 2;
         audioClip = "nemo";
     }
     private void defineColourful()//Small, very fast fish
     {
-        transform.localScale = RandomScale2D(0.1f, 0.28f);
+        transform.localScale = RandomScale2D(0.15f, 0.28f);
         move(Random.Range(5f, 6f));
         foodValue = 3;
         audioClip = "colourful";
     }
     private void defineGolden()//Very small, fast fish
     {
-        transform.localScale = RandomScale2D(0.1f, 0.2f);
+        transform.localScale = RandomScale2D(0.15f, 0.2f);
         move(Random.Range(4f, 6f));
         foodValue = 10;
         audioClip = "golden";
@@ -125,21 +124,21 @@ public class LeftFish : MonoBehaviour
     //Sizes, speed and damage values of damaging fish
     private void defineBadFish()//Average damaging fish
     {
-        transform.localScale = RandomScale2D(0.3f, 0.6f);
+        transform.localScale = RandomScale2D(0.2f, 0.4f);
         move(Random.Range(2f, 4f));
         damage = 1;
         audioClip = "bite";
     }
     private void defineSword()//Very Fast average fish
     {
-        transform.localScale = RandomScale2D(0.2f, 0.6f);
+        transform.localScale = RandomScale2D(0.2f, 0.4f);
         move(Random.Range(5f, 7f));
         damage = 3;
         audioClip = "slash";
     }
     private void defineMine()//Very Slow, large "fish"
     {
-        transform.localScale = RandomScale2D(0.8f, 1.5f);
+        transform.localScale = RandomScale2D(0.4f, 0.7f);
         move(Random.Range(1f, 2f));
         damage = 7;
         audioClip = "explosion";

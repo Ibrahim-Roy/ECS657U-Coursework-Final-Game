@@ -615,6 +615,7 @@ MonoBehaviour:
   dust: {fileID: 0}
   blood: {fileID: 6216180666249920341, guid: 3930a6c2dc0315446b87ae9a7b78b8cc, type: 3}
   campfire: {fileID: 0}
+  destinationPosition: {x: 0, y: 0}
 --- !u!1 &1403309153
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +893,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: splash
+    clip: {fileID: 8300000, guid: 9c14fd98a24bc7d49b3027e04a007d80, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: f6f754e341dc82b42a01ac375850fee4, type: 3}
+    volume: 0.17
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &1864617464
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,6 +1147,14 @@ PrefabInstance:
     - target: {fileID: 3810023476034531668, guid: cb9025b91f8241f41b5ffda29aa3176f, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810023476034531668, guid: cb9025b91f8241f41b5ffda29aa3176f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7559
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810023476034531668, guid: cb9025b91f8241f41b5ffda29aa3176f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3810023476034531668, guid: cb9025b91f8241f41b5ffda29aa3176f, type: 3}
       propertyPath: m_LocalPosition.x

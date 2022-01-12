@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3873751968832178575}
   - component: {fileID: 3873751968832178560}
   - component: {fileID: 3873751968832178561}
-  - component: {fileID: 3873751968832178563}
   - component: {fileID: -6564017339396388117}
   - component: {fileID: -8357674339391896036}
+  - component: {fileID: 4419233679307748134}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Raw Fish
@@ -121,32 +121,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3873751968832178563
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3873751968832178572}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.4796641, y: 0.25508106}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
-    newSize: {x: 0.640625, y: 0.28125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.5203328, y: 1.5256279}
-  m_EdgeRadius: 0
 --- !u!114 &-6564017339396388117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +230,106 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &4419233679307748134
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873751968832178572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10, y: 10}
+    newSize: {x: 0.640625, y: 0.28125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.34375, y: -1.109375}
+      - {x: 1.578125, y: -1.078125}
+      - {x: 1.953125, y: -1.015625}
+      - {x: 2.53125, y: -0.84375}
+      - {x: 3, y: -0.6875}
+      - {x: 3.46875, y: -0.5}
+      - {x: 3.765625, y: -0.171875}
+      - {x: 3.796875, y: -0.015625}
+      - {x: 3.796875, y: 0.375}
+      - {x: 3.765625, y: 0.5}
+      - {x: 3.671875, y: 0.671875}
+      - {x: 3.578125, y: 0.828125}
+      - {x: 3.109375, y: 1.375}
+      - {x: 2.609375, y: 1.796875}
+      - {x: 2.296875, y: 1.9375}
+      - {x: 1.90625, y: 1.984375}
+      - {x: 1.5, y: 2}
+      - {x: 1.265625, y: 2.234375}
+      - {x: 1.125, y: 2.328125}
+      - {x: 0.984375, y: 2.4375}
+      - {x: 0.84375, y: 2.484375}
+      - {x: 0.71875, y: 2.609375}
+      - {x: 0.4375, y: 2.796875}
+      - {x: 0.359375, y: 2.828125}
+      - {x: 0.140625, y: 2.875}
+      - {x: 0.078125, y: 2.828125}
+      - {x: 0.09375, y: 2.515625}
+      - {x: 0.09375, y: 2.078125}
+      - {x: 0.0625, y: 1.890625}
+      - {x: -0.0625, y: 1.6875}
+      - {x: -0.171875, y: 1.671875}
+      - {x: -0.421875, y: 1.578125}
+      - {x: -1.03125, y: 1.28125}
+      - {x: -1.21875, y: 1.1875}
+      - {x: -1.40625, y: 1.0625}
+      - {x: -1.546875, y: 1.015625}
+      - {x: -2.25, y: 0.578125}
+      - {x: -2.359375, y: 0.578125}
+      - {x: -2.46875, y: 0.78125}
+      - {x: -2.875, y: 1.21875}
+      - {x: -2.984375, y: 1.328125}
+      - {x: -3.140625, y: 1.390625}
+      - {x: -3.359375, y: 1.578125}
+      - {x: -3.515625, y: 1.671875}
+      - {x: -3.65625, y: 1.671875}
+      - {x: -3.6875, y: 1.65625}
+      - {x: -3.6875, y: 1.3125}
+      - {x: -3.609375, y: 0.828125}
+      - {x: -3.5625, y: 0.65625}
+      - {x: -3.1875, y: 0.140625}
+      - {x: -3.25, y: 0.09375}
+      - {x: -3.359375, y: -0.078125}
+      - {x: -3.4375, y: -0.25}
+      - {x: -3.515625, y: -0.40625}
+      - {x: -3.625, y: -0.9375}
+      - {x: -3.640625, y: -1.4375}
+      - {x: -3.5625, y: -1.484375}
+      - {x: -3.21875, y: -1.484375}
+      - {x: -3.109375, y: -1.46875}
+      - {x: -3.015625, y: -1.4375}
+      - {x: -2.75, y: -1.140625}
+      - {x: -2.65625, y: -0.828125}
+      - {x: -2.5, y: -0.609375}
+      - {x: -2.421875, y: -0.46875}
+      - {x: -2.3125, y: -0.390625}
+      - {x: -2.09375, y: -0.40625}
+      - {x: -1.890625, y: -0.484375}
+      - {x: -1.53125, y: -0.671875}
+      - {x: -1.328125, y: -0.78125}
+      - {x: -0.953125, y: -0.90625}
+      - {x: -0.734375, y: -0.953125}
+      - {x: -0.328125, y: -1.015625}
+      - {x: 0.234375, y: -1.125}
+      - {x: 0.046875, y: -1.46875}
+      - {x: 0.09375, y: -1.578125}
+      - {x: 0.203125, y: -1.578125}
+      - {x: 0.375, y: -1.484375}
+      - {x: 0.765625, y: -1.09375}

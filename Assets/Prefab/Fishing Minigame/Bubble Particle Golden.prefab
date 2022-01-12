@@ -12,6 +12,14 @@ PrefabInstance:
       value: Bubble Particle Golden
       objectReference: {fileID: 0}
     - target: {fileID: 6216180666249920341, guid: 3930a6c2dc0315446b87ae9a7b78b8cc, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216180666249920341, guid: 3930a6c2dc0315446b87ae9a7b78b8cc, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216180666249920341, guid: 3930a6c2dc0315446b87ae9a7b78b8cc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0
       objectReference: {fileID: 0}
