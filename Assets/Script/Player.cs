@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
                 decrementStone(2);
                 Instantiate(campfire, transform.position, Quaternion.identity);
                 displayAlertOnHUD("Campfire crafted successfully");
+                gameMaster.updateCraftFire(true);
             }
             else
             {
@@ -599,7 +600,6 @@ public class Player : MonoBehaviour
     }
 
     private void die(){
-        gameMaster.updateCraftFire(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

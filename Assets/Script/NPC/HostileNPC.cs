@@ -18,6 +18,11 @@ public abstract class HostileNPC : MonoBehaviour
         decrementHealth(amount);
     }
 
+    public bool getAliveStatus()
+    {
+        return alive;
+    }
+
     protected GameObject target;
     protected Rigidbody2D rigidBody;
     protected Animator animator;
