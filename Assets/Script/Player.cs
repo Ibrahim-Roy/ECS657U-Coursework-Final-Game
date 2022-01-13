@@ -40,13 +40,11 @@ public class Player : MonoBehaviour
         {
             decrementWood(1);
             decrementStone(1);
-            FindObjectOfType<AudioManager>().Play("crafting success"); //Sound crafting success
             incrementArrows(1);
             displayAlertOnHUD("Arrow crafted successfully");
         }
         else
         {
-            FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail
             displayAlertOnHUD("Insufficient resources to craft an arrow");
         }
     }
@@ -59,14 +57,12 @@ public class Player : MonoBehaviour
             {
                 decrementWood(4);
                 decrementStone(2);
-                FindObjectOfType<AudioManager>().Play("crafting success"); //Sound crafting success
                 Instantiate(campfire, transform.position, Quaternion.identity);
                 displayAlertOnHUD("Campfire crafted successfully");
                 gameMaster.updateCraftFire(true);
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail
                 displayAlertOnHUD("Insufficient resources to craft a campfire");
             }
         }
@@ -84,13 +80,11 @@ public class Player : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail
                 displayAlertOnHUD("You need raw meat to be able to cook it");
             }
         }
         else
         {
-            FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail
             displayAlertOnHUD("You need to be near a campfire to cook meat");
         }
     }
@@ -108,13 +102,11 @@ public class Player : MonoBehaviour
             else
             {
                 displayAlertOnHUD("You need raw fish to be able to cook it");
-                FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail               
             }
         }
         else
         {
             displayAlertOnHUD("You need to be near a campfire to cook fish");
-            FindObjectOfType<AudioManager>().Play("crafting fail"); //Sound craft fail
         }
     }
 
@@ -123,7 +115,6 @@ public class Player : MonoBehaviour
         if(fish >= 1)
         {
             decrementFish(1);
-            FindObjectOfType<AudioManager>().Play("eat");//Eat Sound 
             incrementHealth(5);
             incrementHunger(maxHunger);
             displayAlertOnHUD("Consumed fish, +5 health and hunger is replenished");
@@ -139,7 +130,6 @@ public class Player : MonoBehaviour
         if(meat >= 1)
         {
             decrementMeat(1);
-            FindObjectOfType<AudioManager>().Play("eat");//Eat Sound 
             incrementHealth(5);
             incrementHunger(maxHunger);
             displayAlertOnHUD("Consumed meat, +5 health and hunger is replenished");
@@ -436,7 +426,6 @@ public class Player : MonoBehaviour
         equippedItemNumber = itemNumber;
         HUD.updateHUD("Equipped Item", itemNumber);
         animator.SetInteger("Equipped Item Number", equippedItemNumber);
-        FindObjectOfType<AudioManager>().Play("switch");//Switching sound
     }
 
     private IEnumerator decrementHunger(float time)
@@ -450,7 +439,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("hungry");//Starving sound
                 decrementHealth(1);
             }
         }
@@ -605,7 +593,6 @@ public class Player : MonoBehaviour
 
     private void useBow()
     {
-        FindObjectOfType<AudioManager>().Play("bow");//Bow pull
         decrementArrows(1);
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");
