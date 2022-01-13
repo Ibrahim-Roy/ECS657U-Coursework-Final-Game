@@ -49,6 +49,7 @@ public class Campaign : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         int progressCounter = gameMaster.getProgressCounter();
+        Debug.Log(progressCounter);
         if(other.gameObject.CompareTag("Player"))
         {
             if(progressCounter == campaignSequenceNumber)
@@ -64,7 +65,6 @@ public class Campaign : MonoBehaviour
                 {
                     gameMaster.setPlayerPosition(new Vector2(-16f,-13.5f));
                     SceneManager.LoadScene("Cave Scene");
-                    gameMaster.incrementProgressCounter();
                     savePlayerState();
                     Destroy(gameObject);
                 }
@@ -104,7 +104,6 @@ public class Campaign : MonoBehaviour
     private void savePlayerState()
     {
         gameMaster.incrementProgressCounter();
-        gameMaster.setPlayerPosition(player.getPosition());
         gameMaster.setPlayerDestinationPosition(player.getDestinationPosition());
         gameMaster.setEquippedItem(player.getEquippedItem());
         gameMaster.setHealth(player.getHealth());

@@ -441,7 +441,7 @@ public class Player : MonoBehaviour
         equippedItemNumber = itemNumber;
         HUD.updateHUD("Equipped Item", itemNumber);
         animator.SetInteger("Equipped Item Number", equippedItemNumber);
-        FindObjectOfType<AudioManager>().Play("switch");//Switching sound
+        //FindObjectOfType<AudioManager>().Play("switch");//Switching sound
     }
 
     private IEnumerator decrementHunger(float time)
@@ -455,7 +455,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("hungry");//Starving sound
+                //FindObjectOfType<AudioManager>().Play("hungry");//Starving sound
                 decrementHealth(1);
             }
         }
