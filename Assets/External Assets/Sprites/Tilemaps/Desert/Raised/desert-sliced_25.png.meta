@@ -106,6 +106,7 @@ TextureImporter:
     physicsShape:
     - - {x: 0, y: -32}
       - {x: -32, y: -15}
+      - {x: -32, y: -8}
       - {x: 32, y: 15}
       - {x: 32, y: -16}
     bones: []
