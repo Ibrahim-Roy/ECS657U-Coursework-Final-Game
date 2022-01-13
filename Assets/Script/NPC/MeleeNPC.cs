@@ -24,7 +24,7 @@ public class MeleeNPC : HostileNPC
         {
             if(!lootAble)
             {
-                Destroy(this.gameObject);
+                Destroy(this.gameObject, 60f);
             }
         }
     }
