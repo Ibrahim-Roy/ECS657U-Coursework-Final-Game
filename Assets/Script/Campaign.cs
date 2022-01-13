@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Campaign : MonoBehaviour
 {
@@ -38,7 +39,10 @@ public class Campaign : MonoBehaviour
                 }
                 else if(campaignSequenceNumber == 1)
                 {
-                    Debug.Log("Load the cave scene here");
+                    if(!running)
+                    {
+                        SceneManager.LoadScene("Cave Scene");
+                    }
                 }
             }
         }
@@ -62,7 +66,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "That cave seems like a good place!";
         yield return new WaitForSecondsRealtime(5f);
         tutorialBox.text = "- Use WASD or Arrow keys to move\n- The player faces towards the direction of your mouse cursor\n- Follow the compass on the top right of the screen to go to the next objective";
-        player.setDestinationPosition(new Vector2(-10.5f, -9.5f));
+        player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
         gameMaster.incrementProgressCounter();
         running = false;
         Destroy(gameObject);
