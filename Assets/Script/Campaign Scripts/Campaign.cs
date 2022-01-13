@@ -90,6 +90,13 @@ public class Campaign : MonoBehaviour
                     savePlayerState();
                     Destroy(gameObject);
                 }
+                else if(campaignSequenceNumber == 6)
+                {
+                    if(!running)
+                    {
+                        StartCoroutine(cutscene5());
+                    }
+                }
             }
         }
     }
@@ -97,6 +104,7 @@ public class Campaign : MonoBehaviour
     private void savePlayerState()
     {
         gameMaster.incrementProgressCounter();
+        gameMaster.setPlayerPosition(player.getPosition());
         gameMaster.setPlayerDestinationPosition(player.getDestinationPosition());
         gameMaster.setEquippedItem(player.getEquippedItem());
         gameMaster.setHealth(player.getHealth());
@@ -189,4 +197,31 @@ public class Campaign : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private IEnumerator cutscene5()
+    {
+        running = true;
+        cutscene.Play();
+        dialogBox.text = "Huh, what's that paper flying in the air";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "It's coming from the same direction I woke up at";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "Maybe it followed the same path into this world as me\nI should check it out";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "Hmm what does it say...\n\"O Traveller! You must find the willow tree if you wish to ever see your world again!\"";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "What!\nIs this for me!";
+        yield return new WaitForSecondsRealtime(1f);
+        dialogBox.text = "I must find this willow tree!";
+        yield return new WaitForSecondsRealtime(1f);
+        dialogBox.text = "But first I'm starving\nI should find some food before hunger starts to take a toll on my health";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "Was that a sheeps sound?\nIt sounded like it came from the east";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "I should craft some arrows and hunt that sheep";
+        tutorialBox.text = "-Consumable objects can be crafted from different resources\n-Wood and stone resources can be chopped and mined from trees and rocks respectively\n-To chop trees use the axe or to mine rocks use the pickaxe\n-The axe and pickaxe can be equipped by clicking on the right side of the HUD or by using the keys 3 and 4\n-Hover over the craft button of consumables to see their crafting recipes and click the button to craft them" ;
+        yield return new WaitForSecondsRealtime(3f);
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
 }

@@ -282,6 +282,11 @@ public class Player : MonoBehaviour
         return destinationPosition;
     }
 
+    public Vector2 getPosition()
+    {
+        return transform.position;
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
     private HUDManager HUD;
