@@ -405,7 +405,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "What a strange woman...why did she care I was looking for the tree?\nAnd why did she act so differently when she found out?\nWhat was that about bandits and some crystals?";
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "Ugh all of this is making my head spin.\n";
-        yield return new WaitForSecondsRealtime(2f);  
+        yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "No matter, I have a feeling finding the tree is more important now";//Woman
         savePlayerState();
         running = false;
