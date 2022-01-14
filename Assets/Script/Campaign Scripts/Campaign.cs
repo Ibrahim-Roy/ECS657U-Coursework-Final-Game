@@ -124,16 +124,18 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         cutscene.Play();
         dialogBox.text = "Where am I?";
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1.5f);
         dialogBox.text = "What is this place?";
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I can't remember anything!";
+        FindObjectOfType<AudioManager>().Play("howl");
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "Is that a wolf howling!";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I must find someplace to hide!";
         yield return new WaitForSecondsRealtime(3.5f);
         dialogBox.text = "That cave seems like a good place!";
+        FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-Use WASD or Arrow keys to move.\n-The player faces towards the direction of your mouse cursor.\n-Follow the compass on the top right of the screen to go to the next objective.";
         yield return new WaitForSecondsRealtime(5f);
         player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
@@ -152,6 +154,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Huh, those tools look like they are in good condition.";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I should pick them up, they should help me survive this place, whatever it is.";
+        FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To pick up items in the world walk over them.";
         yield return new WaitForSecondsRealtime(3f);
         player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
@@ -217,6 +220,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Was that a sheeps sound?\nIt sounded like it came from the east";
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "I should craft some arrows and hunt that sheep";
+        FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-Consumable objects can be crafted from different resources\n-Wood and stone resources can be chopped and mined from trees and rocks respectively\n-To chop trees use the axe or to mine rocks use the pickaxe\n-The axe and pickaxe can be equipped by clicking on the right side of the HUD or by using the keys 3 and 4\n-Hover over the craft button of consumables to see their crafting recipes and click the button to craft them" ;
         yield return new WaitForSecondsRealtime(3f);
         savePlayerState();

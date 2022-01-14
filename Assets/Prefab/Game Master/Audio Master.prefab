@@ -80,8 +80,38 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: quest
+    clip: {fileID: 8300000, guid: 3679a0741be968e418c4793d2212f8fc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: howl
+    clip: {fileID: 8300000, guid: 627d1c25ee5cdf14cb6a0982c5ca91cb, type: 3}
+    volume: 0.35
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: swing1
+    clip: {fileID: 8300000, guid: 66d46721af6fcac4eaadf77b596e2f10, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: swing2
+    clip: {fileID: 8300000, guid: 055223f2f41f95146880c9b0fda35230, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: swing3
+    clip: {fileID: 8300000, guid: c4c3d06bfbfb50c418ce5dfe65c53bfd, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: sample
-    clip: {fileID: 8300000, guid: 48cd045e60f05bd48af2c536cd0c957b, type: 3}
+    clip: {fileID: 8300000, guid: 3679a0741be968e418c4793d2212f8fc, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
