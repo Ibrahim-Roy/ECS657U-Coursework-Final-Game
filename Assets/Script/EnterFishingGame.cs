@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class EnterFishingGame : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Collider2D hook_Collider;
+
     void Start()
     {
-        SceneManager.LoadScene("Fishing Minigame");
+        hook_Collider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)//When catches fish
     {
-        
+        if (col.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("Fishing Minigame");
+        }
     }
 }
