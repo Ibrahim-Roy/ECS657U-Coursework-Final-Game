@@ -427,6 +427,7 @@ public class Player : MonoBehaviour
         {
             if(arrows > 0 && !shooting)
             {
+                FindObjectOfType<AudioManager>().Play("bow");//Bow pull
                 shooting = true;
                 animator.SetTrigger("Use");
                 Invoke("useBow", 0.12f);
@@ -441,6 +442,11 @@ public class Player : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("swing2");
             else if (swingNum == 3)
                 FindObjectOfType<AudioManager>().Play("swing3");
+            animator.SetTrigger("Use");
+        }
+        else if(equippedItemNumber == 3 || equippedItemNumber == 4)
+        {
+            FindObjectOfType<AudioManager>().Play("swoosh");
             animator.SetTrigger("Use");
         }
         else
@@ -623,7 +629,6 @@ public class Player : MonoBehaviour
 
     private void useBow()
     {
-        FindObjectOfType<AudioManager>().Play("bow");//Bow pull
         decrementArrows(1);
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ((transform.GetChild(0).gameObject).transform.GetChild(0).gameObject).GetComponent<RangedWeapon>().shoot(mouseWorldPosition, "HostileNPC");

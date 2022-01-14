@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public abstract class HostileNPC : MonoBehaviour
 {
@@ -36,6 +37,13 @@ public abstract class HostileNPC : MonoBehaviour
     protected bool backUp = false;
     protected bool attacking = false;
 
+    protected AudioSource audioSource;
+    protected AudioClip attackAudio;
+    protected AudioClip hitAudio;
+    protected AudioClip deathAudio;
+    protected AudioClip otherAudio;
+
+
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -50,7 +58,7 @@ public abstract class HostileNPC : MonoBehaviour
         animationHandler(randomRoamDestinationPosition); 
         health = maxHealth;
         healthBar.maxValue = maxHealth;
-        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;     
+        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;   
     }
 
     protected virtual void FixedUpdate()
@@ -92,6 +100,7 @@ public abstract class HostileNPC : MonoBehaviour
         {
             if(!backUp && !attacking)
             {
+
                 attackTarget();
             }
         }
@@ -177,5 +186,25 @@ public abstract class HostileNPC : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         stuck = false;
+    }
+        public void attackSound()
+    {
+        audioSource.clip = attackAudio;
+        audioSource.Play();
+    }
+    public void hitSound()
+    {
+        audioSource.clip = hitAudio;
+        audioSource.Play();
+    }
+    public void deathSound()
+    {
+        audioSource.clip = deathAudio;
+        audioSource.Play();
+    }
+    public void otherSound()
+    {
+        audioSource.clip = otherAudio;
+        audioSource.Play();
     }
 }
