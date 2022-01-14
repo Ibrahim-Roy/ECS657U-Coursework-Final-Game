@@ -404,18 +404,22 @@ public class Player : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             changeEquippedItem(1);
+            FindObjectOfType<AudioManager>().Play("switch");//Switching sound
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             changeEquippedItem(2);
+            FindObjectOfType<AudioManager>().Play("switch");//Switching sound
         }
         else if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             changeEquippedItem(3);
+            FindObjectOfType<AudioManager>().Play("switch");//Switching sound
         }
         else if(Input.GetKeyDown(KeyCode.Alpha4))
         {
             changeEquippedItem(4);
+            FindObjectOfType<AudioManager>().Play("switch");//Switching sound
         }
     }
 
@@ -463,7 +467,6 @@ public class Player : MonoBehaviour
         equippedItemNumber = itemNumber;
         HUD.updateHUD("Equipped Item", itemNumber);
         animator.SetInteger("Equipped Item Number", equippedItemNumber);
-        FindObjectOfType<AudioManager>().Play("switch");//Switching sound
     }
 
     private IEnumerator decrementHunger(float time)

@@ -80,6 +80,26 @@ public class Campaign : MonoBehaviour
                 preyDependentScript = preyDependent.GetComponent<Prey>();
             }
         }
+        if(campaignSequenceNumber == 8)
+        {
+            if(player.getRawMeat() > 0)
+            {
+                if(!running)
+                {
+                    StartCoroutine(cutscene7());
+                }
+            }
+        }
+        if(campaignSequenceNumber ==9)
+        {
+            if(player.getMeat() > 0)
+            {
+                if(!running)
+                {
+                    StartCoroutine(cutscene8());
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -188,7 +208,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Huh, those tools look like they are in good condition.";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I should pick them up, they should help me survive this place, whatever it is.";
-        FindObjectOfType<AudioManager>().Play("quest");
+        //FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To pick up items in the world walk over them.";
         yield return new WaitForSecondsRealtime(3f);
         player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
@@ -206,7 +226,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "How dare you touch my stuff";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "Now you must die";
-        tutorialBox.text = "-To equip the bow click the button on the right side of the HUD.\n-You can also use key 1 if shortcut keys are enabled in settings.\n-Aim the bow with your mouse and shoot with left mouseclick.\n-Keep an eye on your arrows displayed bottom left on the HUD.\nStay away from melee enemies to avoid taking damage.\n-Enemy health is displayed on top of them when they take damage.";
+        tutorialBox.text = "-To equip the bow or the sword click the button on the right side of the HUD.\n-You can also use key 1 or 2 if shortcut keys are enabled in settings.\n-Aim the weapon with your mouse and shoot or swing with left mouseclick.\n-Keep an eye on your arrows displayed bottom left on the HUD.\nStay away from melee enemies to avoid taking damage.\n-Enemy health is displayed on top of them when they take damage.";
         yield return new WaitForSecondsRealtime(3f);
         player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
         savePlayerState();
@@ -218,7 +238,7 @@ public class Campaign : MonoBehaviour
     {
         running = true;
         cutscene.Play();
-        dialogBox.text = "What kind of world is this";
+        dialogBox.text = "What kind of world is this!?";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "Skeletons coming to life and all";
         yield return new WaitForSecondsRealtime(2f);
@@ -269,6 +289,35 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "I should skin the sheep and take it's meat";
         tutorialBox.text = "-To skin meat from animals you need to go near them and interact using the E key\n-Then walk over raw meat to collect it";
         yield return new WaitForSecondsRealtime(3f);
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene7()
+    {
+        running = true;
+        cutscene.Play();
+        dialogBox.text = "I better make a fire and cook this meat";
+        tutorialBox.text = "-To cook raw resources you need to craft a fire\n-When around the fire you will see a text pop-up and thats when you can cook/craft raw food\n-Crafting fires also works as checkpoints to save the game";
+        yield return new WaitForSecondsRealtime(3f);
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene8()
+    {
+        running = true;
+        cutscene.Play();
+        dialogBox.text = "Is that a woman shouting?";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I should go check it out";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "Maybe she can help me find the willow tree";
+        yield return new WaitForSecondsRealtime(2f);
+        player.setDestinationPosition(new Vector2(20.12f, 7.05f));
+        savePlayerState();
         running = false;
         Destroy(gameObject);
     }
