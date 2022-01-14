@@ -152,6 +152,35 @@ public class GameMasterMainWorld : MonoBehaviour
         progressCounter += 1;
     }
 
+    public Vector2 getPlayerDestinationPosition()
+    {
+        return playerDestinationPosition;
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveGameMaster(this);
+    }
+
+    public void LoadPlayer()
+    {
+        GameData data = SaveSystem.LoadGameMaster();
+        playerEquippedItemNumber = data.playerEquippedItemNumber;
+        playerWood = data.playerWood;
+        playerStone = data.playerStone;
+        playerRawFish = data.playerRawFish;
+        playerRawMeat = data.playerRawMeat;
+        playerArrows = data.playerArrows;
+        playerFish = data.playerFish;
+        playerMeat = data.playerMeat;
+        craftFire = data.craftFire;
+        progressCounter = data.progressCounter;
+        playerPosition.x = data.playerPosition[0];
+        playerPosition.y = data.playerPosition[1];
+        playerDestinationPosition.x = data.playerDestinationPosition[0];
+        playerDestinationPosition.y = data.playerDestinationPosition[1];
+    }
+
     private static GameMasterMainWorld instance;
     [SerializeField] private EnumList.PlayMode currentMode;
     [SerializeField] private Vector2 playerPosition;
