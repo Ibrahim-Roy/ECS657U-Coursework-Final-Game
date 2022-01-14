@@ -110,6 +110,42 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: swoosh
+    clip: {fileID: 8300000, guid: 66d46721af6fcac4eaadf77b596e2f10, type: 3}
+    volume: 0.5
+    pitch: 0.6
+    loop: 0
+    source: {fileID: 0}
+  - name: bow
+    clip: {fileID: 8300000, guid: 69a6c682d4edb264a91543aadc5004eb, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: arrow
+    clip: {fileID: 8300000, guid: 29006baf288e7ce4e8a95c08653fe47c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: arrow miss
+    clip: {fileID: 8300000, guid: 433b1f38a43d97c4a9bc19dc8db62d76, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: chop
+    clip: {fileID: 8300000, guid: 54df131e13f00ae42a6ab67e66ec4cf8, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: mine
+    clip: {fileID: 8300000, guid: 00c6000caf60a6c429df173477b4e425, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: sample
     clip: {fileID: 8300000, guid: 3679a0741be968e418c4793d2212f8fc, type: 3}
     volume: 0.5

@@ -9,6 +9,7 @@ public class MeleeNPC : HostileNPC
     public GameObject resource;
     public float dodgeBackDistance = 1.0f;
 
+
     protected override void attackTarget()
     {
         if(!attacking)

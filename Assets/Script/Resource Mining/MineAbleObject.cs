@@ -14,6 +14,7 @@ public class MineAbleObject : MonoBehaviour
     {
         if(health>0)
         {
+            soundEffect();
             health--;
         }
         if ( health==0 && !destroyed)
@@ -45,5 +46,14 @@ public class MineAbleObject : MonoBehaviour
         {
             animator.SetBool("Mined", false);
         }
+    }
+    private void soundEffect()
+    {
+        if (gameObject.tag == "Tree")
+        {
+            FindObjectOfType<AudioManager>().Play("chop");//Chop Sound
+        }
+        if (gameObject.tag == "Boulder")
+            FindObjectOfType<AudioManager>().Play("mine");//Mine Sound
     }
 }

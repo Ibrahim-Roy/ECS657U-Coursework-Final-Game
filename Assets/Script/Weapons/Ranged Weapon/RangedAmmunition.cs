@@ -10,11 +10,23 @@ public class RangedAmmunition : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<HostileNPC>().takeDamage(1);
         }
+        FindObjectOfType<AudioManager>().Play("arrow");//Hit Sound
+        DespawnTime(5);
         Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        FindObjectOfType<AudioManager>().Play("arrow miss");//Miss Sound
+        DespawnTime(5);
         Destroy(this.gameObject);    
+    }
+
+    private IEnumerator DespawnTime(float time)
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(time);
+        }
     }
 
 }

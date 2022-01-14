@@ -68,7 +68,6 @@ public class HuntAbleAnimal : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other) {
         setRandomRoamDestination();
-        roamWorldRandomly();
     }
 
      private void OnTriggerEnter2D(Collider2D other)
@@ -105,17 +104,16 @@ public class HuntAbleAnimal : MonoBehaviour
         if(Vector2.Distance(transform.position, randomRoamDestinationPosition) < 0.5)
         {
             setRandomRoamDestination();
-            animationHandler(randomRoamDestinationPosition); 
         }
     }
 
     private void setRandomRoamDestination()
     {
-        Debug.Log("Work");
         randomRoamDestinationPosition = new Vector2(
             Random.Range(originalPosition.x - maximumRoamingDistance, originalPosition.x + maximumRoamingDistance),
             Random.Range(originalPosition.y - maximumRoamingDistance, originalPosition.y + maximumRoamingDistance)
         );
+        animationHandler(randomRoamDestinationPosition); 
     }
 
     private void animationHandler(Vector2 destination)

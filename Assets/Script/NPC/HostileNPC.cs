@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public abstract class HostileNPC : MonoBehaviour
 {
@@ -12,9 +13,14 @@ public abstract class HostileNPC : MonoBehaviour
     public float movementSpeed;
     public float stoppingDistance;
     public int maxHealth;
+    public AudioClip attackAudio;
+    public AudioClip hitAudio;
+    public AudioClip deathAudio;
+    public AudioClip otherAudio;
 
     public virtual void takeDamage(int amount)
     {
+        hitSound();
         decrementHealth(amount);
     }
 
@@ -36,10 +42,14 @@ public abstract class HostileNPC : MonoBehaviour
     protected bool backUp = false;
     protected bool attacking = false;
 
+    protected AudioSource source;
+
+
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        source = gameObject.GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -50,7 +60,7 @@ public abstract class HostileNPC : MonoBehaviour
         animationHandler(randomRoamDestinationPosition); 
         health = maxHealth;
         healthBar.maxValue = maxHealth;
-        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;     
+        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;   
     }
 
     protected virtual void FixedUpdate()
@@ -93,6 +103,7 @@ public abstract class HostileNPC : MonoBehaviour
             if(!backUp && !attacking)
             {
                 attackTarget();
+                attackSound();
             }
         }
     }
@@ -116,6 +127,7 @@ public abstract class HostileNPC : MonoBehaviour
             if(alive && !attacking)
             {
                 attackTarget();
+                attackSound();
             }
         }
     }
@@ -136,6 +148,8 @@ public abstract class HostileNPC : MonoBehaviour
         }
         if(health <= 0)
         {
+            if (alive == true)//Prevent hitting corpses
+                deathSound();
             health = 0;
             healthBar.gameObject.SetActive(false);
             animator.SetTrigger("Kill");
@@ -153,6 +167,7 @@ public abstract class HostileNPC : MonoBehaviour
             Random.Range(originalPosition.x - maximumRoamingDistance, originalPosition.x + maximumRoamingDistance),
             Random.Range(originalPosition.y - maximumRoamingDistance, originalPosition.y + maximumRoamingDistance)
         );
+        animationHandler(randomRoamDestinationPosition); 
     }
 
     protected void roamWorldRandomly()
@@ -161,8 +176,8 @@ public abstract class HostileNPC : MonoBehaviour
         rigidBody.MovePosition(nextStepPosition);
         if(Vector2.Distance(transform.position, randomRoamDestinationPosition) < 0.5)
         {
+            otherSound();
             setRandomRoamDestination();
-            animationHandler(randomRoamDestinationPosition); 
         }
     }
 
@@ -177,5 +192,30 @@ public abstract class HostileNPC : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         stuck = false;
+    }
+
+    protected void attackSound()
+    {
+        source.clip = attackAudio;
+        source.Play();
+    }
+    public void hitSound()
+    {
+        source.clip = hitAudio;
+        source.Play();
+    }
+    public void deathSound()
+    {
+        source.clip = deathAudio;
+        source.Play();
+    }
+    public void otherSound()
+    {
+        if (otherAudio != null)
+        {
+            source.clip = otherAudio;
+            source.Play();
+        }
+        
     }
 }
