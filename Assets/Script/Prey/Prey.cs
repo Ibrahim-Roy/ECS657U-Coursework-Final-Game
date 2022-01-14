@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HuntAbleAnimal : MonoBehaviour
+public class Prey : MonoBehaviour
 {
     public Slider healthBar;
     public ParticleSystem blood;
@@ -15,12 +15,18 @@ public class HuntAbleAnimal : MonoBehaviour
 
     public void takeDamage(int amount)
     {
+        Debug.Log("Take Damage");
         if(movementSpeed == normalMovementSpeed)
         {
-            movementSpeed = movementSpeed*2;
+            movementSpeed = movementSpeed*3;
             StartCoroutine(returnToNormalSpeed());
         }
         decrementHealth(amount);
+    }
+
+    public bool getAliveStatus()
+    {
+        return alive;
     }
 
     private Rigidbody2D rigidBody;
@@ -41,6 +47,7 @@ public class HuntAbleAnimal : MonoBehaviour
 
     private void Start()
     {
+        originalPosition = new Vector2(transform.position.x, transform.position.y);
         movementSpeed = normalMovementSpeed;
         setRandomRoamDestination();        
     }

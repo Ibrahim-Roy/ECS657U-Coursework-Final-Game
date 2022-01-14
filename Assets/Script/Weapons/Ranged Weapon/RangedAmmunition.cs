@@ -10,6 +10,10 @@ public class RangedAmmunition : MonoBehaviour
         {
             other.gameObject.GetComponentInParent<HostileNPC>().takeDamage(1);
         }
+        else if(other.gameObject.CompareTag("Prey"))
+        {
+            other.gameObject.GetComponent<Prey>().takeDamage(1);
+        }
         FindObjectOfType<AudioManager>().Play("arrow");//Hit Sound
         DespawnTime(5);
         Destroy(this.gameObject);

@@ -167,7 +167,7 @@ public class GameMasterMainWorld : MonoBehaviour
     private int playerFish = 0;
     private int playerMeat = 0;
     private bool craftFire = false;
-    private int progressCounter = 0;
+    private int progressCounter = 6;
 
     private void Awake() {
         if(instance == null)
