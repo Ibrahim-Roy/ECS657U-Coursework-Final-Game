@@ -9,6 +9,10 @@ public class mainMenu : MonoBehaviour
 
     public GameObject instructions;
 
+    public GameObject musicOptions;
+
+    public GameObject difficulty;
+
     public void Play(){
         SceneManager.LoadScene("Main World");
     }
@@ -27,6 +31,22 @@ public class mainMenu : MonoBehaviour
 
     public void HowClose(){
         instructions.SetActive(false);
+    }
+
+    public void MusicOpen(){
+        musicOptions.SetActive(true);
+    }
+
+    public void MusicClose(){
+        musicOptions.SetActive(false);
+    }
+
+    public void DiffOpen(){
+        difficulty.SetActive(true);
+    }
+
+    public void DifClose(){
+        difficulty.SetActive(false);
     }
 
     public void Quit(){
