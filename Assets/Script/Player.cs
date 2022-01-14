@@ -432,6 +432,17 @@ public class Player : MonoBehaviour
                 Invoke("useBow", 0.12f);
             }
         }
+        else if(equippedItemNumber == 2)
+        {
+            int swingNum = Random.Range(1, 3);
+            if (swingNum == 1)
+                FindObjectOfType<AudioManager>().Play("swing1");
+            else if (swingNum == 2)
+                FindObjectOfType<AudioManager>().Play("swing2");
+            else if (swingNum == 3)
+                FindObjectOfType<AudioManager>().Play("swing3");
+            animator.SetTrigger("Use");
+        }
         else
         {
             animator.SetTrigger("Use");
