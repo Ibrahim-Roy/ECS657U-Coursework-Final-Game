@@ -25,6 +25,7 @@ TagManager:
   - Craft Meat
   - Craft Fish
   - Game Master
+  - Prey
   layers:
   - Default
   - TransparentFX

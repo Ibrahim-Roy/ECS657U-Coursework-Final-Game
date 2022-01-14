@@ -11,6 +11,8 @@ public class Campaign : MonoBehaviour
     public Text tutorialBox;
     public GameObject tools;
     public GameObject enemyDependent;
+    public GameObject preyDependent;
+    public GameObject sheepPrefab;
 
     private GameMasterMainWorld gameMaster;
     private Player player;
@@ -18,6 +20,7 @@ public class Campaign : MonoBehaviour
     [SerializeField] private int campaignSequenceNumber;
     private bool running = false;
     private HostileNPC enemyDependentScript;
+    private Prey preyDependentScript;
 
     private void Start()
     {
@@ -27,6 +30,10 @@ public class Campaign : MonoBehaviour
         if(enemyDependent != null)
         {
             enemyDependentScript = enemyDependent.GetComponent<HostileNPC>();
+        }
+        if(preyDependent != null)
+        {
+            preyDependentScript = preyDependent.GetComponent<Prey>();
         }
     }
 
@@ -45,11 +52,38 @@ public class Campaign : MonoBehaviour
                 }
             }
         }
+        if(preyDependentScript != null)
+        {
+            if(!preyDependentScript.getAliveStatus())
+            {
+                if(campaignSequenceNumber == 7)
+                {
+                    if(!running)
+                    {
+                        StartCoroutine(cutscene6());
+                    }
+                }
+            }
+            else
+            {
+                if(campaignSequenceNumber == 7)
+                {
+                    player.setDestinationPosition(new Vector2(preyDependent.transform.position.x, preyDependent.transform.position.y));
+                }
+            }
+        }
+        else
+        {
+            if(campaignSequenceNumber == 7)
+            {
+                preyDependent = Instantiate(sheepPrefab, new Vector3(-0.25f, 20.33f, 0f), Quaternion.identity);
+                preyDependentScript = preyDependent.GetComponent<Prey>();
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         int progressCounter = gameMaster.getProgressCounter();
-        Debug.Log(progressCounter);
         if(other.gameObject.CompareTag("Player"))
         {
             if(progressCounter == campaignSequenceNumber)
@@ -224,6 +258,17 @@ public class Campaign : MonoBehaviour
         tutorialBox.text = "-Consumable objects can be crafted from different resources\n-Wood and stone resources can be chopped and mined from trees and rocks respectively\n-To chop trees use the axe or to mine rocks use the pickaxe\n-The axe and pickaxe can be equipped by clicking on the right side of the HUD or by using the keys 3 and 4\n-Hover over the craft button of consumables to see their crafting recipes and click the button to craft them" ;
         yield return new WaitForSecondsRealtime(3f);
         savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene6()
+    {
+        running = true;
+        cutscene.Play();
+        dialogBox.text = "I should skin the sheep and take it's meat";
+        tutorialBox.text = "-To skin meat from animals you need to go near them and interact using the E key\n-Then walk over raw meat to collect it";
+        yield return new WaitForSecondsRealtime(3f);
         running = false;
         Destroy(gameObject);
     }
