@@ -39,28 +39,40 @@ public class Campaign : MonoBehaviour
 
     private void Update()
     {
-        if(enemyDependentScript != null)
+        int progressCounter = gameMaster.getProgressCounter();
+        Debug.Log(progressCounter);
+        if (progressCounter == campaignSequenceNumber)
         {
-            if(!enemyDependentScript.getAliveStatus())
+            if(enemyDependentScript != null)
             {
-                if(campaignSequenceNumber == 4)
+                if(!enemyDependentScript.getAliveStatus())
                 {
-                    if(!running)
+                    if(campaignSequenceNumber == 4)
                     {
-                        StartCoroutine(cutscene4());
+                        if(!running)
+                        {
+                            StartCoroutine(cutscene4());
+                        }
                     }
                 }
             }
-        }
-        if(preyDependentScript != null)
-        {
-            if(!preyDependentScript.getAliveStatus())
+            if(preyDependentScript != null)
             {
-                if(campaignSequenceNumber == 7)
+                if(!preyDependentScript.getAliveStatus())
                 {
-                    if(!running)
+                    if(campaignSequenceNumber == 7)
                     {
-                        StartCoroutine(cutscene6());
+                        if(!running)
+                        {
+                            StartCoroutine(cutscene6());
+                        }
+                    }
+                }
+                else
+                {
+                    if(campaignSequenceNumber == 7)
+                    {
+                        player.setDestinationPosition(new Vector2(preyDependent.transform.position.x, preyDependent.transform.position.y));
                     }
                 }
             }
@@ -68,35 +80,28 @@ public class Campaign : MonoBehaviour
             {
                 if(campaignSequenceNumber == 7)
                 {
-                    player.setDestinationPosition(new Vector2(preyDependent.transform.position.x, preyDependent.transform.position.y));
+                    preyDependent = Instantiate(sheepPrefab, new Vector3(-0.25f, 20.33f, 0f), Quaternion.identity);
+                    preyDependentScript = preyDependent.GetComponent<Prey>();
                 }
             }
-        }
-        else
-        {
-            if(campaignSequenceNumber == 7)
+            if(campaignSequenceNumber == 8)
             {
-                preyDependent = Instantiate(sheepPrefab, new Vector3(-0.25f, 20.33f, 0f), Quaternion.identity);
-                preyDependentScript = preyDependent.GetComponent<Prey>();
-            }
-        }
-        if(campaignSequenceNumber == 8)
-        {
-            if(player.getRawMeat() > 0)
-            {
-                if(!running)
+                if(player.getRawMeat() > 0)
                 {
-                    StartCoroutine(cutscene7());
+                    if(!running)
+                    {
+                        StartCoroutine(cutscene7());
+                    }
                 }
             }
-        }
-        if(campaignSequenceNumber == 9)
-        {
-            if(player.getMeat() > 0)
+            if(campaignSequenceNumber == 9)
             {
-                if(!running)
+                if(player.getMeat() > 0)
                 {
-                    StartCoroutine(cutscene8());
+                    if(!running)
+                    {
+                        StartCoroutine(cutscene8());
+                    }
                 }
             }
         }
@@ -140,7 +145,6 @@ public class Campaign : MonoBehaviour
                 {
                     gameMaster.setPlayerPosition(new Vector2(-6.5f, 21.5f));
                     SceneManager.LoadScene("Main World");
-                    gameMaster.incrementProgressCounter();
                     savePlayerState();
                     Destroy(gameObject);
                 }
@@ -287,6 +291,7 @@ public class Campaign : MonoBehaviour
         running = true;
         cutscene.Play();
         dialogBox.text = "I should skin the sheep and take it's meat";
+        FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To skin meat from animals you need to go near them and interact using the E key\n-Then walk over raw meat to collect it";
         yield return new WaitForSecondsRealtime(3f);
         savePlayerState();
@@ -299,6 +304,7 @@ public class Campaign : MonoBehaviour
         running = true;
         cutscene.Play();
         dialogBox.text = "I better make a fire and cook this meat";
+        FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To cook raw resources you need to craft a fire\n-When around the fire you will see a text pop-up and thats when you can cook/craft raw food\n-Crafting fires also works as checkpoints to save the game";
         yield return new WaitForSecondsRealtime(3f);
         savePlayerState();
@@ -310,13 +316,141 @@ public class Campaign : MonoBehaviour
     {
         running = true;
         cutscene.Play();
+        FindObjectOfType<AudioManager>().Play("scream");
         dialogBox.text = "Is that a woman shouting?";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I should go check it out";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "Maybe she can help me find the willow tree";
         yield return new WaitForSecondsRealtime(2f);
+        FindObjectOfType<AudioManager>().Play("quest");
         player.setDestinationPosition(new Vector2(20.12f, 7.05f));
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene9()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "That must be the woman I heard...";//Show woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "SHES IN DANGER!";//Show wolves
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I need to help her";
+        yield return new WaitForSecondsRealtime(2f);
+        FindObjectOfType<AudioManager>().Play("quest");
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene10()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "That must be the woman I heard...";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "SHES IN DANGER!";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I need to help her";
+        yield return new WaitForSecondsRealtime(2f);
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene11()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "*Phew* That is the last of them";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "Are you okay?";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "WOMAN: Yes, I had this under control"; //Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "The attacks have been getting worse ever since the bandits destroyed thecrystal island\n and forced them out of their habitat"; //Woman
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "WOMAN: So I can very well take care of myself."; //Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "The crystal isl-?\nWell okay sorry for interrupting...";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I was wondering if you could help me out\nI was looking for-";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WOMAN: Oh so you come in swinging your sword and now I owe you help!?";//Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "Wha?-\nLook I was just looking for some willow tree";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WOMAN: ...";//Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WOMAN: You're looking for the willow tree?";//Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WOMAN: You're not from around here are you?";//Woman
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WOMAN: Yes..";//Woman
+        yield return new WaitForSecondsRealtime(1f);
+        dialogBox.text = "WEIRD WOMAN: YES!";//Woman
+        yield return new WaitForSecondsRealtime(1f);
+        dialogBox.text = "WEIRD WOMAN: THE TREE, ITS JUST SOUTH FROM HERE, FOLLOW THE PATH SOUTHWEST AND IT WILL LEAD YOU RIGHT TO IT";//Woman
+        FindObjectOfType<AudioManager>().Play("quest");
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "WEIRD WOMAN: Anyway I have to be off on my way now!\n Thanks! Bye.";//Woman
+        //Woman runs off north
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "What a strange woman...why did she care I was looking for the tree?\nAnd why did she act so differently when she found out?\nWhat was that about bandits and some crystals?";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "Ugh all of this is making my head spin.\n";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "No matter, I have a feeling finding the tree is more important now";//Woman
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene12()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "That must be the willow tree";
+        yield return new WaitForSecondsRealtime(2f);
+        //SHOW TREE
+        dialogBox.text = "It's beautiful";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "What's this?";
+        yield return new WaitForSecondsRealtime(2f);
+        //ANOTHER NOTE
+        dialogBox.text = "NOTE: A century ago these lands were a place of peace and people\ncame here seeking shelter from the cruel outside world.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: The natural resources within the world were infused with magical\nproperties which scared away the evil forces.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: However, as they always do, the humans took what they had for granted\nand abused the resources.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: At first they started to steal the reserves of the crystals for their own tools use.\nBut eventually they started digging them up just to prevent\nanyone else from getting them.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: As the minerals started to run out evil forces from\n outside managed to slither their way into the lands.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: They completely destroyed the island and only left\n those as corrupt as themselves in the barren wasteland.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: Only the Ancient Tree was able to prevent the dark corruption.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: A prophecy foretold that they would seek to take over the remainder of the lands,\nand once the Ancient Willow is at its weakest,\nand corruption begins to spread to the ones who live in the nearby lands the willow will call out for a saviour\nfrom a faraway land who will have to survive against the corruption\nand destroy it once and for all.";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "NOTE: So go forth hero, you are our last chance at survival,\nin our hour of need we beg of you to go to the wasteland\nand destroy the evil lurking within the pyramid";
+        yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "...";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "WHAT!?";
+        yield return new WaitForSecondsRealtime(1f);
+        dialogBox.text = "I DONT EVEN KNOW WHO OR WHERE I AM AND NOW I HAVE TO BE A HERO!?";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "I guess, I have no other option...";
+        yield return new WaitForSecondsRealtime(2f);
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
         Destroy(gameObject);
