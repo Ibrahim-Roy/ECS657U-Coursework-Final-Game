@@ -94,7 +94,7 @@ public class Campaign : MonoBehaviour
                     }
                 }
             }
-            if(campaignSequenceNumber ==9)
+            if(campaignSequenceNumber == 9)
             {
                 if(player.getMeat() > 0)
                 {
@@ -449,7 +449,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "I DONT EVEN KNOW WHO OR WHERE I AM AND NOW I HAVE TO BE A HERO!?";
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "I guess, I have no other option...";
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(2f);
         player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
