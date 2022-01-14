@@ -208,7 +208,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Huh, those tools look like they are in good condition.";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I should pick them up, they should help me survive this place, whatever it is.";
-        FindObjectOfType<AudioManager>().Play("quest");
+        //FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To pick up items in the world walk over them.";
         yield return new WaitForSecondsRealtime(3f);
         player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
@@ -238,7 +238,7 @@ public class Campaign : MonoBehaviour
     {
         running = true;
         cutscene.Play();
-        dialogBox.text = "What kind of world is this";
+        dialogBox.text = "What kind of world is this!?";
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "Skeletons coming to life and all";
         yield return new WaitForSecondsRealtime(2f);

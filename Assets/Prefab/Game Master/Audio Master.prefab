@@ -48,7 +48,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 296bd4d21211e554cbdcbe06f329abfd, type: 3}
     volume: 0.1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: pickup
     clip: {fileID: 8300000, guid: 2e67ec6719918a04d951301348986ff6, type: 3}
