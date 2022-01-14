@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
             if(rawMeat >= 1)
             {
                 decrementRawMeat(1);
+                FindObjectOfType<AudioManager>().Play("sizzling");//Cooking sound
                 incrementMeat(1);
                 displayAlertOnHUD("Meat cooked successfully");
             }
@@ -102,6 +103,7 @@ public class Player : MonoBehaviour
             if(rawFish >= 1)
             {
                 decrementRawFish(1);
+                FindObjectOfType<AudioManager>().Play("sizzling");//Cooking sound
                 incrementFish(1);
                 displayAlertOnHUD("Fish cooked successfully");
             }
@@ -441,7 +443,7 @@ public class Player : MonoBehaviour
         equippedItemNumber = itemNumber;
         HUD.updateHUD("Equipped Item", itemNumber);
         animator.SetInteger("Equipped Item Number", equippedItemNumber);
-        //FindObjectOfType<AudioManager>().Play("switch");//Switching sound
+        FindObjectOfType<AudioManager>().Play("switch");//Switching sound
     }
 
     private IEnumerator decrementHunger(float time)
@@ -455,7 +457,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //FindObjectOfType<AudioManager>().Play("hungry");//Starving sound
+                FindObjectOfType<AudioManager>().Play("hungry");//Starving sound
                 decrementHealth(1);
             }
         }
