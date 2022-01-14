@@ -29,6 +29,11 @@ public class Prey : MonoBehaviour
         return alive;
     }
 
+    public bool getSkinnedStatus()
+    {
+        return skinned;
+    }
+
     private Rigidbody2D rigidBody;
     private Animator animator;
     private Vector2 originalPosition;
@@ -49,7 +54,10 @@ public class Prey : MonoBehaviour
     {
         originalPosition = new Vector2(transform.position.x, transform.position.y);
         movementSpeed = normalMovementSpeed;
-        setRandomRoamDestination();        
+        setRandomRoamDestination();
+        health = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.fillRect.GetComponentInChildren<Image>().color = Color.red;         
     }
 
     private void FixedUpdate()
