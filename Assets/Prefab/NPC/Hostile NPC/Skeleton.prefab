@@ -5442,6 +5442,10 @@ MonoBehaviour:
   movementSpeed: 1
   stoppingDistance: 0.2
   maxHealth: 10
+  attackAudio: {fileID: 8300000, guid: 185a33ad6cdc086459bdf489271b97bc, type: 3}
+  hitAudio: {fileID: 8300000, guid: f6efb2c135cbd894b8dacd4e3aabfb38, type: 3}
+  deathAudio: {fileID: 8300000, guid: f2ecb8a9cd63dad469524a66882a3c38, type: 3}
+  otherAudio: {fileID: 8300000, guid: 981be827a27d4254a8d556cecf34598d, type: 3}
   lootAble: 0
   lootingGuidePanel: {fileID: 0}
   resource: {fileID: 0}

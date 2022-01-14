@@ -477,8 +477,7 @@ GameObject:
   - component: {fileID: 675069839687767946}
   - component: {fileID: 854471773}
   - component: {fileID: 471090197}
-  - component: {fileID: 8143503617695933858}
-  - component: {fileID: 7867380247779973472}
+  - component: {fileID: 464112277304857369}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Hostile
@@ -614,6 +613,10 @@ MonoBehaviour:
   movementSpeed: 1.5
   stoppingDistance: 0.2
   maxHealth: 10
+  attackAudio: {fileID: 8300000, guid: cb399dca98bbc744db81c26b218c7635, type: 3}
+  hitAudio: {fileID: 8300000, guid: 4636f963593bf064cbf4ab1c16be9b7f, type: 3}
+  deathAudio: {fileID: 8300000, guid: 88d48aade61a2284498c1d3bd3f0e84f, type: 3}
+  otherAudio: {fileID: 8300000, guid: 0e770ce309917714bb73cacacd882b9b, type: 3}
   lootAble: 1
   lootingGuidePanel: {fileID: 33921694}
   resource: {fileID: 1251347501322784557, guid: b24b92446f0977444bcd5ecd2cd3c1e3, type: 3}
@@ -644,24 +647,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6636457, y: 1.2712445}
   m_EdgeRadius: 0
---- !u!114 &8143503617695933858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675069839687767985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52cb412497172bd4096371da176a838d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 7867380247779973472}
-  attackAudio: {fileID: 8300000, guid: cb399dca98bbc744db81c26b218c7635, type: 3}
-  hitAudio: {fileID: 8300000, guid: 4636f963593bf064cbf4ab1c16be9b7f, type: 3}
-  deathAudio: {fileID: 8300000, guid: 88d48aade61a2284498c1d3bd3f0e84f, type: 3}
-  otherAudio: {fileID: 8300000, guid: 0e770ce309917714bb73cacacd882b9b, type: 3}
---- !u!82 &7867380247779973472
+--- !u!82 &464112277304857369
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -673,7 +659,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
