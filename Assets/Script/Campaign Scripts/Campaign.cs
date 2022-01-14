@@ -72,7 +72,7 @@ public class Campaign : MonoBehaviour
                 {
                     if(campaignSequenceNumber == 7)
                     {
-                        player.setDestinationPosition(new Vector2(preyDependent.transform.position.x, preyDependent.transform.position.y));
+                        gameMaster.setPlayerPosition(new Vector2(preyDependent.transform.position.x, preyDependent.transform.position.y));
                     }
                 }
             }
@@ -196,7 +196,7 @@ public class Campaign : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-Use WASD or Arrow keys to move.\n-The player faces towards the direction of your mouse cursor.\n-Follow the compass on the top right of the screen to go to the next objective.";
         yield return new WaitForSecondsRealtime(5f);
-        player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
+        gameMaster.setPlayerPosition(new Vector2(-6.5f, 21.5f));
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -215,7 +215,7 @@ public class Campaign : MonoBehaviour
         //FindObjectOfType<AudioManager>().Play("quest");
         tutorialBox.text = "-To pick up items in the world walk over them.";
         yield return new WaitForSecondsRealtime(3f);
-        player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
+        gameMaster.setPlayerPosition(new Vector2(-6.5f, 21.5f));
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -232,7 +232,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Now you must die";
         tutorialBox.text = "-To equip the bow or the sword click the button on the right side of the HUD.\n-You can also use key 1 or 2 if shortcut keys are enabled in settings.\n-Aim the weapon with your mouse and shoot or swing with left mouseclick.\n-Keep an eye on your arrows displayed bottom left on the HUD.\nStay away from melee enemies to avoid taking damage.\n-Enemy health is displayed on top of them when they take damage.";
         yield return new WaitForSecondsRealtime(3f);
-        player.setDestinationPosition(new Vector2(-6.5f, 21.5f));
+        gameMaster.setPlayerPosition(new Vector2(-6.5f, 21.5f));
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -251,7 +251,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "But first I'm starving, I need to get some food!\nI should get out of this cave";
         tutorialBox.text = "-The player has basic hunger requirements that you need to satisfy by eating meat and fish\n-Meat can be hunted from animals and fish can be caught from rivers";
         yield return new WaitForSecondsRealtime(3f);
-        player.setDestinationPosition(new Vector2(-16f,-13.3f));
+        gameMaster.setPlayerPosition(new Vector2(-16f,-13.3f));
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -324,7 +324,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "Maybe she can help me find the willow tree";
         yield return new WaitForSecondsRealtime(2f);
         FindObjectOfType<AudioManager>().Play("quest");
-        player.setDestinationPosition(new Vector2(20.12f, 7.05f));
+        gameMaster.setPlayerPosition(new Vector2(20.12f, 7.05f));
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -341,7 +341,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "I need to help her";
         yield return new WaitForSecondsRealtime(2f);
         FindObjectOfType<AudioManager>().Play("quest");
-        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        gameMaster.setPlayerPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -357,7 +357,7 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "I need to help her";
         yield return new WaitForSecondsRealtime(2f);
-        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        gameMaster.setPlayerPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
         Destroy(gameObject);
@@ -397,7 +397,7 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         dialogBox.text = "WEIRD WOMAN: THE TREE, ITS JUST SOUTH FROM HERE, FOLLOW THE PATH SOUTHWEST AND IT WILL LEAD YOU RIGHT TO IT";//Woman
         FindObjectOfType<AudioManager>().Play("quest");
-        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        gameMaster.setPlayerPosition(new Vector2(0f, 0f));//SET DESTINATION
         yield return new WaitForSecondsRealtime(4f);
         dialogBox.text = "WEIRD WOMAN: Anyway I have to be off on my way now!\n Thanks! Bye.";//Woman
         //Woman runs off north
@@ -450,7 +450,7 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "I guess, I have no other option...";
         yield return new WaitForSecondsRealtime(2f);
-        player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
+        gameMaster.setPlayerPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
         Destroy(gameObject);
