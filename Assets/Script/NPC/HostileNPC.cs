@@ -162,6 +162,7 @@ public abstract class HostileNPC : MonoBehaviour
             Random.Range(originalPosition.x - maximumRoamingDistance, originalPosition.x + maximumRoamingDistance),
             Random.Range(originalPosition.y - maximumRoamingDistance, originalPosition.y + maximumRoamingDistance)
         );
+        animationHandler(randomRoamDestinationPosition); 
     }
 
     protected void roamWorldRandomly()
@@ -171,7 +172,6 @@ public abstract class HostileNPC : MonoBehaviour
         if(Vector2.Distance(transform.position, randomRoamDestinationPosition) < 0.5)
         {
             setRandomRoamDestination();
-            animationHandler(randomRoamDestinationPosition); 
         }
     }
 
