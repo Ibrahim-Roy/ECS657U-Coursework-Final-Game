@@ -90,7 +90,7 @@ public class Campaign : MonoBehaviour
                 }
             }
         }
-        if(campaignSequenceNumber ==9)
+        if(campaignSequenceNumber == 9)
         {
             if(player.getMeat() > 0)
             {
