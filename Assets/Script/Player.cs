@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     public void collectResource(string resourceTag)
     {
+        FindObjectOfType<AudioManager>().Play("pickup");//Sound of picking up items
         if(resourceTag == "Log")
         {
             incrementWood(1);
@@ -155,6 +156,8 @@ public class Player : MonoBehaviour
     public void takeDamage(int amount)
     {
         decrementHealth(amount);
+        FindObjectOfType<AudioManager>().Play("hit"); //Sound health loss
+
     }
 
     public void setCampfireStatus(bool status)
@@ -570,6 +573,8 @@ public class Player : MonoBehaviour
         HUD.updateHUD("Health", health);
         if(health <= 0)
         {
+            FindObjectOfType<AudioManager>().Play("defeat"); //Sound death
+
             die();
         }
     }

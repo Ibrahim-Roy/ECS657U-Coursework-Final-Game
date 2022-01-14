@@ -146,6 +146,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: hit
+    clip: {fileID: 8300000, guid: dbf2d3f84c49f694e8a1e8674481e6f9, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: defeat
+    clip: {fileID: 8300000, guid: 6758b45100eb1304daa4920fe0fea729, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: sample
     clip: {fileID: 8300000, guid: 3679a0741be968e418c4793d2212f8fc, type: 3}
     volume: 0.5
