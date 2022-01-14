@@ -331,6 +331,7 @@ public class Player : MonoBehaviour
         if(currentMode == EnumList.PlayMode.Main)
         {
             transform.position = gameMaster.getPlayerPosition();
+            destinationPosition = gameMaster.getPlayerDestinationPosition();
             setEquippedItem(gameMaster.getEquippedItem());
             if(gameMaster.craftFireRequired())
             {
@@ -360,6 +361,7 @@ public class Player : MonoBehaviour
         {
             inputHandler();
             animationHandler();
+            destinationPosition = gameMaster.getPlayerDestinationPosition();
             HUD.updateCompass(transform.position, destinationPosition);
         }
     }
