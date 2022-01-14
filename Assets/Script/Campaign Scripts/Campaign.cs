@@ -373,7 +373,7 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(4f);
         dialogBox.text = "WOMAN: Yes, I had this under control"; //Woman
         yield return new WaitForSecondsRealtime(2f);
-        dialogBox.text = "The attacks have been getting worse ever since the bandits destroyed thecrystal island\n and forced them out of their habitat"; //Woman
+        dialogBox.text = "The attacks have been getting worse ever since the purge destroyed thecrystal island\n and forced them out of their habitat"; //Woman
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "WOMAN: So I can very well take care of myself."; //Woman
         yield return new WaitForSecondsRealtime(2f);
@@ -402,7 +402,7 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "WEIRD WOMAN: Anyway I have to be off on my way now!\n Thanks! Bye.";//Woman
         //Woman runs off north
         yield return new WaitForSecondsRealtime(2f);
-        dialogBox.text = "What a strange woman...why did she care I was looking for the tree?\nAnd why did she act so differently when she found out?\nWhat was that about bandits and some crystals?";
+        dialogBox.text = "What a strange woman...why did she care I was looking for the tree?\nAnd why did she act so differently when she found out?\nWhat was that about the purge and some crystals?";
         yield return new WaitForSecondsRealtime(3f);
         dialogBox.text = "Ugh all of this is making my head spin.\n";
         yield return new WaitForSecondsRealtime(2f);
@@ -439,7 +439,11 @@ public class Campaign : MonoBehaviour
         dialogBox.text = "NOTE: Only the Ancient Tree was able to prevent the dark corruption.";
         yield return new WaitForSecondsRealtime(4f);
         dialogBox.text = "NOTE: A prophecy foretold that they would seek to take over the remainder of the lands,\nand once the Ancient Willow is at its weakest,\nand corruption begins to spread to the ones who live in the nearby lands the willow will call out for a saviour\nfrom a faraway land who will have to survive against the corruption\nand destroy it once and for all.";
+        yield return new WaitForSecondsRealtime(6f);
+        dialogBox.text = "NOTE: He will go to the Pyramid and purge it of darkness, however he must beware";
         yield return new WaitForSecondsRealtime(4f);
+        dialogBox.text = "This note feels strangely targeted at me";
+        yield return new WaitForSecondsRealtime(2f);
         dialogBox.text = "NOTE: So go forth hero, you are our last chance at survival,\nin our hour of need we beg of you to go to the wasteland\nand destroy the evil lurking within the pyramid";
         yield return new WaitForSecondsRealtime(4f);
         dialogBox.text = "...";
@@ -448,11 +452,55 @@ public class Campaign : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         dialogBox.text = "I DONT EVEN KNOW WHO OR WHERE I AM AND NOW I HAVE TO BE A HERO!?";
         yield return new WaitForSecondsRealtime(3f);
-        dialogBox.text = "I guess, I have no other option...";
-        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I guess, I have no other option... Who doesnt want to be a hero anyway?";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "I guess I will have find a way to stop the evil";
+        yield return new WaitForSecondsRealtime(3f);
+        FindObjectOfType<AudioManager>().Play("quest");
         player.setDestinationPosition(new Vector2(0f, 0f));//SET DESTINATION
         savePlayerState();
         running = false;
         Destroy(gameObject);
     }
+
+    private IEnumerator cutscene13()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "FISHERMAN: WHO ARE YE?";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "I am the hero thats here to save you from the dark corruption";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "FISHERMAN: Sure and I'm Michael Jackson.";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "...\nDo you know how I can get to the Pyramid?";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "FISHERMAN: Hmmm catch 10 fish for me and then I might know";
+        yield return new WaitForSecondsRealtime(3f);
+        dialogBox.text = "Aren't you the fisherman..?";
+        yield return new WaitForSecondsRealtime(2f);
+        dialogBox.text = "NOT FISHERMAN: Mind your business";
+        yield return new WaitForSecondsRealtime(2f);
+        FindObjectOfType<AudioManager>().Play("quest");
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET FISHING GAME
+        //FISHING GAME TIME
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator cutscene14()
+    {
+        running = true;
+        cutscene.Play();//MAKE CUTSCENE
+        dialogBox.text = "FISHERMAN: Thanks, so: the pyramid is in the desert. It's like a big triangle,\n crazy I know.";
+        yield return new WaitForSecondsRealtime(2f);
+        FindObjectOfType<AudioManager>().Play("quest");
+        player.setDestinationPosition(new Vector2(0f, 0f));//SET PYRAMID
+        savePlayerState();
+        running = false;
+        Destroy(gameObject);
+    }
+
+    //CUTSCENE 15 YOU WIN!!!
 }
