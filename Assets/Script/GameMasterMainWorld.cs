@@ -186,8 +186,8 @@ public class GameMasterMainWorld : MonoBehaviour
     [SerializeField] private Vector2 playerPosition;
     private Vector2 playerDestinationPosition = new Vector2(-6.64f, 21.17f);
     private int playerEquippedItemNumber = 0;
-    private int playerHealth = 30;
-    private int playerHunger = 30;
+    private int playerHealth = 10;
+    private int playerHunger = 10;
     private int playerWood = 0;
     private int playerStone = 0;
     private int playerRawFish = 0;
