@@ -17,6 +17,10 @@ public class mainMenu : MonoBehaviour
         SceneManager.LoadScene("Main World");
     }
 
+    public void Reset(){
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void OptionsOpen(){
         options.SetActive(true);
     }
